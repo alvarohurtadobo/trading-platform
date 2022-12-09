@@ -8,6 +8,7 @@ class Sizes {
   static double boxSize = 50;
   static double bigButtonSize = 70;
   static double tileNormal = 25;
+  static double tileMedium = 25;
   static double iconSide = 16;
   static double radius = 7;
 
@@ -15,7 +16,7 @@ class Sizes {
   static double navigationHeight = 120;
 
   static double font02 = 36;
-  static double font04 = 24;
+  static double font04 = 28;
   static double font06 = 18;
   static double font08 = 16;
   static double font10 = 14;
@@ -29,7 +30,8 @@ class Sizes {
     boxSeparation = padding / 2;
     boxSize = width / 3.6;
     bigButtonSize = width / 2.8;
-    tileNormal = width / 6.8;
+    tileNormal = width / 11.2;
+    tileMedium = width / 6;
     iconSide = width / 16;
     radius = boxSeparation;
     initialLogoSide = width / 2;

@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Trading project',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Poppins'
       ),
       onGenerateRoute: RouteGenerator.generateRoute,
     );

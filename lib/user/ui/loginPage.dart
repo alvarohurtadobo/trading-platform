@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/components/customTextInput.dart';
-import 'package:project_trading/common/sizes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -36,14 +36,11 @@ class _LoginPageState extends State<LoginPage> {
               top: 0,
               child: Container(
                 width: Sizes.width * 1.2,
-                height: Sizes.height * 0.32,
-                decoration: BoxDecoration(
-                    image: const DecorationImage(
+                height: Sizes.height * 0.5,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
                         image: AssetImage("assets/images/ship.png"),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(Sizes.height * 0.2),
-                        bottomRight: Radius.circular(Sizes.height * 0.2))),
+                        fit: BoxFit.cover)),
               ),
             ),
             Positioned(
@@ -75,7 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
-                      customButton(context, "Entrar", () {},
+                      customButton(context, "Entrar", () {
+                        Navigator.of(context).pushReplacementNamed("/home");
+                      },
                           active: true),
                     ],
                   ),

@@ -64,7 +64,9 @@ class _StartAsPageState extends State<StartAsPage> {
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
-                      customButton(context, "Planificador", () {},
+                      customButton(context, "Planificador", () {
+                        Navigator.of(context).pushReplacementNamed("/login");
+                      },
                           active: true),
                       SizedBox(
                         height: Sizes.boxSeparation,

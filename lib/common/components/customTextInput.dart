@@ -20,7 +20,10 @@ Widget customTextInput(
         ),
         TextField(
           onChanged: setParameter,
-          decoration: InputDecoration(hintText: hint),
+          style: const TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+              hintText: hint,
+              hintStyle: const TextStyle(color: Color(0xff4E8ED0))),
         )
       ],
     ),

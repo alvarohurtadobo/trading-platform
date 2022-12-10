@@ -7,10 +7,16 @@ class Sizes {
 
   static double boxSize = 50;
   static double bigButtonSize = 70;
-  static double tileNormal = 25;
+  static double tileSmall = 20;
+  static double tileMini = 18;
+  static double tileNormal = 20;
   static double tileMedium = 25;
+  static double avatarSide = 27;
+  static double tileBig = 30;
   static double iconSide = 16;
   static double radius = 7;
+  static double bullet = 8;
+  static double icon = 32;
 
   static double initialLogoSide = 70;
   static double navigationHeight = 120;
@@ -20,7 +26,7 @@ class Sizes {
   static double font06 = 18;
   static double font08 = 16;
   static double font10 = 14;
-  static double font12 = 10;
+  static double font12 = 12;
   static double font14 = 8;
 
   static void initSizes(double newWidth, double newHeight) {
@@ -30,11 +36,17 @@ class Sizes {
     boxSeparation = padding / 2;
     boxSize = width / 3.6;
     bigButtonSize = width / 2.8;
-    tileNormal = width / 11.2;
+    tileMini = width / 14;
+    tileSmall = width / 12;
+    tileNormal = width / 10;
     tileMedium = width / 6;
+    tileBig = width / 4.8;
+    avatarSide = width / 5.8;
     iconSide = width / 16;
-    radius = boxSeparation;
+    radius = boxSeparation / 2;
+    bullet = boxSeparation;
     initialLogoSide = width / 2;
     navigationHeight = height / 6;
+    icon = width / 5.2;
   }
 }

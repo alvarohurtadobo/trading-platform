@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/ui/splash.dart';
+import 'package:project_trading/trade/ui/risksPage.dart';
+import 'package:project_trading/user/ui/homePage.dart';
 import 'package:project_trading/user/ui/loginPage.dart';
 import 'package:project_trading/user/ui/signupPage.dart';
 import 'package:project_trading/common/ui/startAsPage.dart';
 import 'package:project_trading/user/ui/simpleSignupPage.dart';
+import 'package:project_trading/trade/ui/incotermsMatrixPage.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -21,6 +24,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SimpleSignupPage());
       case "/login":
         return MaterialPageRoute(builder: (_) => LoginPage());
+      case "/home":
+        return MaterialPageRoute(builder: (_) => HomePage());
+      case "/incoterm-matrix":
+        return MaterialPageRoute(builder: (_) => IncotermsMatrixPage());
+      case "/risks":
+        return MaterialPageRoute(builder: (_) => RisksPage());
+      case "/orders":
+        return MaterialPageRoute(builder: (_) => RisksPage());
       default:
         return errorRoute();
     }

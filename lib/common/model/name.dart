@@ -3,57 +3,54 @@ class Name {
   int id = 0;
   String name = "";
 
-  Name(this.name) {
-    lastId++;
-    id = lastId;
-  }
+  Name(this.id, this.name);
 }
 
 List<Name> responsibilities = [
-  Name("Incoterms / responsabilidades"), //1
-  Name("Incoterms / responsabilidades"),
-  Name("Incoterms / responsabilidades"),
+  Name(1,"Incoterms / responsabilidades"), //1
+  Name(2,"Incoterms / responsabilidades"),
+  Name(3,"Incoterms / responsabilidades"),
 ];
 
 List<Name> sources = [
-  Name("Fabrica"), //4
-  Name("No fabrica"),
+  Name(1,"Fabrica"), //4
+  Name(2,"No fabrica"),
 ];
 
 List<Name> documents = [
-  Name("Documentos"), //6
-  Name("Recibos"),
-  Name("Facturas"),
-  Name("Comprobantes"),
+  Name(1,"Documentos"), //6
+  Name(2,"Recibos"),
+  Name(3,"Facturas"),
+  Name(4,"Comprobantes"),
 ];
 
 List<Name> orderTypes = [
-  Name("Incoterms"), //10
-  Name("Incoterms"),
-  Name("Incoterms"),
-  Name("Incoterms"),
+  Name(1,"Incoterms"), //10
+  Name(2,"Incoterms"),
+  Name(3,"Incoterms"),
+  Name(4,"Incoterms"),
 ];
 
 List<Name> orders = [
-  Name("#563"), //14
-  Name("#245"),
-  Name("#4800"),
-  Name("#568"),
-  Name("#356"),
-  Name("#897"),
-  Name("#245"),
-  Name("#4800"),
-  Name("#568"),
-  Name("#356"),
-  Name("#897"),
-  Name("#245"),
-  Name("#4800"),
-  Name("#568"),
-  Name("#356"),
-  Name("#897"),
-  Name("#245"),
-  Name("#4800"),
-  Name("#568"),
-  Name("#356"),
-  Name("#897"),
+  Name(1,"#563"), //14
+  Name(2,"#245"),
+  Name(3,"#4800"),
+  Name(4,"#568"),
+  Name(5,"#356"),
+  Name(6,"#897"),
+  Name(7,"#245"),
+  Name(8,"#4800"),
+  Name(9,"#568"),
+  Name(10,"#356"),
+  Name(11,"#897"),
+  Name(12,"#245"),
+  Name(13,"#4800"),
+  Name(14,"#568"),
+  Name(15,"#356"),
+  Name(16,"#897"),
+  Name(17,"#245"),
+  Name(18,"#4800"),
+  Name(19,"#568"),
+  Name(20,"#356"),
+  Name(21,"#897"),
 ];

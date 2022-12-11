@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/chip.dart';
-import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
 import 'package:project_trading/common/components/calendar.dart';
-import 'package:project_trading/common/components/customInput.dart';
 import 'package:project_trading/common/components/verticalSpac.dart';
 import 'package:project_trading/common/components/customProgress.dart';
+import 'package:project_trading/common/components/horizontalSpace.dart';
 
-class ProgrammedTimeLinePage extends StatefulWidget {
+class PlannedTimeLinePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _ProgrammedTimeLinePageState();
+  State<StatefulWidget> createState() => _PlannedTimeLinePageState();
 }
 
-class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
+class _PlannedTimeLinePageState extends State<PlannedTimeLinePage> {
   int _selectedIndex = 0;
   bool seeAll = false;
   bool order = false;
@@ -50,74 +49,59 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
                     ),
                   ),
                   verticalSpace(),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed("/planned-timeline");
-                    },
-                    child: chip(
-                      "Programado",
-                      width: Sizes.width / 3,
-                    ),
+                  chip(
+                    "Planificado",
+                    width: Sizes.width / 3,
                   ),
                   verticalSpace(),
-                  customProgress(50),
+                  customProgress(76),
                   verticalSpace(),
                   Text(
-                    "3 notificaciones de alerta",
+                    "Tiempo menor a 45 días",
                     style: TextStyle(fontSize: Sizes.font12),
                   ),
                   verticalSpace(),
-                  calendar(small: true),
-                  verticalSpace(),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
-                    child: Text(
-                      "Salida aduana de origen",
-                      style: TextStyle(
-                          fontSize: Sizes.font08,
-                          color: const Color(0xff575454)),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
-                    child: Text(
-                      "Lunes 10 de octubre de 2022 a las 6:40AM",
-                      style: TextStyle(
-                          fontSize: Sizes.font10,
-                          color: const Color(0xff575454)),
-                    ),
+                  calendar(small: false),
+                  verticalSpace(3),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: Sizes.tileMini,
+                        height: Sizes.tileMini,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: const Color(0xffB1D4F2),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(Sizes.bullet))),
+                      ),
+                      horizontalSpace(),
+                      const Text(
+                        "Fecha de Salida de Fabrica",
+                        style: TextStyle(color: Color(0xff575454)),
+                      )
+                    ],
                   ),
                   verticalSpace(),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
-                    child: Text("Entrada a naviera",
-                        style: TextStyle(
-                            fontSize: Sizes.font08,
-                            color: const Color(0xff575454))),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: Sizes.tileMini,
+                        height: Sizes.tileMini,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: const Color(0xff74CF6F),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(Sizes.bullet))),
+                      ),
+                      horizontalSpace(),
+                      const Text(
+                        "Fecha estimada de llegada al destino",
+                        style: TextStyle(color: Color(0xff575454)),
+                      )
+                    ],
                   ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
-                    child: Text("Jueves 13 de octubre de 2022 a las 6:40AM",
-                        style: TextStyle(
-                            fontSize: Sizes.font10,
-                            color: const Color(0xff575454))),
-                  ),
-                  verticalSpace(2),
-                  customInput("Agregar detalles"),
-                  verticalSpace(),
-                  Container(
-                      width: double.infinity,
-                      alignment: Alignment.centerRight,
-                      child: customButton(context, "Notificar", () {},
-                          backgroundColor: const Color(0xff4E8ED0))),
                   verticalSpace(3),
                 ]),
           ))),

@@ -17,8 +17,8 @@ class IncotermsMatrixPage extends StatefulWidget {
 class _IncotermsMatrixPageState extends State<IncotermsMatrixPage> {
   int _selectedIndex = 0;
   int? _currentIncoterm = 1;
-  int? _currentSource = 4;
-  int? _currentDocument = 6;
+  int? _currentSource = 1;
+  int? _currentDocument = 1;
   bool seeAll = false;
   bool outOfFabric = false;
   bool order = false;

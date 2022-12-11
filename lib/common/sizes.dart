@@ -9,6 +9,7 @@ class Sizes {
   static double bigButtonSize = 70;
   static double tileSmall = 20;
   static double tileMini = 18;
+  static double tileMicro = 15;
   static double tileNormal = 20;
   static double tileMedium = 25;
   static double avatarSide = 27;
@@ -29,6 +30,7 @@ class Sizes {
   static double font10 = 14;
   static double font12 = 12;
   static double font14 = 10;
+  static double font16 = 8;
 
   static void initSizes(double newWidth, double newHeight) {
     width = newWidth;
@@ -37,6 +39,7 @@ class Sizes {
     boxSeparation = padding / 2;
     boxSize = width / 3.6;
     bigButtonSize = width / 2.8;
+    tileMicro = width / 18;
     tileMini = width / 14;
     tileSmall = width / 12;
     tileNormal = width / 10;

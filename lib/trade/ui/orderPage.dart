@@ -22,8 +22,6 @@ class _OrderPageState extends State<OrderPage> {
   bool verified = false;
   bool fabric = false;
 
-  int? currentOrderType = 10;
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;

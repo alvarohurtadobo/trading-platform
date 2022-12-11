@@ -22,7 +22,7 @@ class _OrdersPageState extends State<OrdersPage> {
   bool finished = false;
   bool verified = false;
 
-  int? currentOrderType = 10;
+  int? currentOrderType = 1;
   int? currentOrder;
 
   @override

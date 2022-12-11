@@ -20,8 +20,6 @@ class _LogisticsPageState extends State<LogisticsPage> {
   bool verified = false;
   bool fabric = false;
 
-  int? currentOrderType = 10;
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -36,57 +34,59 @@ class _LogisticsPageState extends State<LogisticsPage> {
     return Scaffold(
       appBar: myAppBar(context),
       backgroundColor: Colors.white,
-      body: SizedBox(
-          width: Sizes.width,
-          height: Sizes.height,
-          child: SingleChildScrollView(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Center(
-              child: Text(
-                "Logística de compra",
-                style: TextStyle(
-                    color: const Color(0xff103E6E),
-                    fontWeight: FontWeight.bold,
-                    fontSize: Sizes.font06),
-              ),
-              ),
-              verticalSpace(2),
-              Center(
-              child: Text(
-                currentOrder,
-                style: TextStyle(
-                    color: const Color(0xff3075B6),
-                    fontWeight: FontWeight.bold,
-                    fontSize: Sizes.font04),
-              ),
-              ),
-              verticalSpace(),
-              Column(
-              children: [
-                logisticTile(
-                    "Transporte Interno",
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-                    100),
-                logisticTile(
-                    "Aduana origen",
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-                    50, active: true),
-                logisticTile(
-                    "Naviera",
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-                    0),
-                logisticTile(
-                    "Aduana destino",
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-                    0),
-                logisticTile(
-                    "Fabrica",
-                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-                    0),
-              ],
-              ),
-              verticalSpace(3),
-            ]))),
+      body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+        Text(
+          "Logística de compra",
+          style: TextStyle(
+              color: const Color(0xff103E6E),
+              fontWeight: FontWeight.bold,
+              fontSize: Sizes.font06),
+        ),
+        verticalSpace(1),
+        Text(
+          currentOrder,
+          style: TextStyle(
+              color: const Color(0xff3075B6),
+              fontWeight: FontWeight.bold,
+              fontSize: Sizes.font04),
+        ),
+        verticalSpace(),
+        Expanded(
+          child: ListView(
+            children: [
+              logisticTile(
+                  context,
+                  "Transporte Interno",
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+                  100),
+              logisticTile(
+                  context,
+                  "Aduana origen",
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+                  50,
+                  active: true),
+              logisticTile(
+                  context,
+                  "Naviera",
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+                  0),
+              logisticTile(
+                  context,
+                  "Aduana destino",
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+                  0),
+              logisticTile(
+                  context,
+                  "Fabrica",
+                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
+                  0),
+            ],
+          ),
+        ),
+        verticalSpace(3),
+      ]),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,

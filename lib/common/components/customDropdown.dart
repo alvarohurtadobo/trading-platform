@@ -4,15 +4,16 @@ import 'package:project_trading/common/model/name.dart';
 
 Widget customDropdown(
     int? value, List<Name> items, void Function(int?) onChanged) {
+  print("Dropdown ${items.map((e) => e.id)}");
   return Container(
-    width: Sizes.width - 2*Sizes.padding,
+    width: Sizes.width - 2 * Sizes.padding,
     height: Sizes.tileNormal,
-    padding: EdgeInsets.symmetric(horizontal: Sizes.padding/2),
+    padding: EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(Sizes.radius)),
         border: Border.all(color: const Color(0xffcccccc))),
     child: DropdownButton(
-      underline: Container(),
+        underline: Container(),
         isExpanded: true,
         icon: const Icon(
           Icons.keyboard_arrow_down_sharp,

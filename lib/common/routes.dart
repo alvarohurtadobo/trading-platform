@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/ui/splash.dart';
-import 'package:project_trading/trade/ui/logisticsPage.dart';
+import 'package:project_trading/trade/ui/plannedPage.dart';
 import 'package:project_trading/user/ui/homePage.dart';
 import 'package:project_trading/user/ui/loginPage.dart';
 import 'package:project_trading/trade/ui/orderPage.dart';
 import 'package:project_trading/trade/ui/risksPage.dart';
 import 'package:project_trading/user/ui/signupPage.dart';
 import 'package:project_trading/trade/ui/ordersPage.dart';
+import 'package:project_trading/trade/ui/timelinePage.dart';
 import 'package:project_trading/common/ui/startAsPage.dart';
+import 'package:project_trading/trade/ui/logisticsPage.dart';
 import 'package:project_trading/user/ui/simpleSignupPage.dart';
 import 'package:project_trading/trade/ui/incotermsMatrixPage.dart';
 
@@ -39,6 +41,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OrderPage());
       case "/logistics":
         return MaterialPageRoute(builder: (_) => LogisticsPage());
+      case "/programmed-timeline":
+        return MaterialPageRoute(builder: (_) => ProgrammedTimeLinePage());
+      case "/planned-timeline":
+        return MaterialPageRoute(builder: (_) => PlannedTimeLinePage());
       default:
         return errorRoute();
     }

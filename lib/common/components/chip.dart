@@ -5,7 +5,7 @@ Widget chip(String text,
     {Color backgroundColor = const Color(0xff4E8ED0), double width = 60}) {
   return Container(
     width: width,
-    height: Sizes.tileMini,
+    height: Sizes.tileMicro,
     alignment: Alignment.center,
     padding: EdgeInsets.only(left: Sizes.padding / 4),
     decoration: BoxDecoration(

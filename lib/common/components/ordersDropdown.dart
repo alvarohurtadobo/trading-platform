@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/model/name.dart';
+import 'package:project_trading/common/model/currentState.dart';
 
 Widget ordersDropdown( BuildContext context,
     int? value, List<Name> items) {
@@ -16,10 +16,7 @@ Widget ordersDropdown( BuildContext context,
       hint: const Text("Ordenes de compras (EXW)"),
       underline: Container(),
         isExpanded: true,
-        icon: const Icon(
-          Icons.keyboard_arrow_down_sharp,
-          color: Color(0xff75B1E5),
-        ),
+        icon: Container(),
         value: value,
         onChanged: (value){
           currentOrder = items.firstWhere((element) => element.id==value).name;

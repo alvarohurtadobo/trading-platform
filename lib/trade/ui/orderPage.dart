@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/trade/model/incoterm.dart';
-import 'package:project_trading/common/components/chip.dart';
 import 'package:project_trading/common/components/button.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
+import 'package:project_trading/common/components/customInput.dart';
 import 'package:project_trading/common/components/verticalSpac.dart';
 import 'package:project_trading/common/components/customProgress.dart';
 
-class RisksPage extends StatefulWidget {
+class OrderPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _RisksPageState();
+  State<StatefulWidget> createState() => _OrderPageState();
 }
 
-class _RisksPageState extends State<RisksPage> {
+class _OrderPageState extends State<OrderPage> {
   int _selectedIndex = 0;
   bool seeAll = false;
-  bool reportRisk = false;
   bool order = false;
   bool process = false;
   bool finished = false;
   bool verified = false;
+  bool fabric = false;
+
+  int? currentOrderType = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -39,66 +42,85 @@ class _RisksPageState extends State<RisksPage> {
           width: Sizes.width,
           height: Sizes.height,
           child: SingleChildScrollView(
-              child: Column(children: [
-            const Text(
-              "Riesgos",
-              style: TextStyle(
-                  color: Color(0xff103E6E), fontWeight: FontWeight.bold),
-            ),
-            verticalSpace(2),
-            const Text("Recorrido: (16 horas)"),
-            verticalSpace(),
-            customProgress(32,
-                activeColor: const Color(0xff4E8ED0),
-                inactiveColor: const Color(0xffE1E1E1)),
-            verticalSpace(2),
-            chip("Planificado", width: Sizes.width / 3.5),
-            verticalSpace(),
-            customProgress(76),
-            verticalSpace(2),
-            chip("Real", width: Sizes.width / 3.5),
-            verticalSpace(),
-            customProgress(76),
-            verticalSpace(4),
-            const Text("Informar de algún riesgo"),
-            verticalSpace(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Center(
+                child: Text(
+                  "Orden de compra",
+                  style: TextStyle(
+                      color: const Color(0xff103E6E),
+                      fontWeight: FontWeight.bold,
+                      fontSize: Sizes.font06),
+                ),
+              ),
+              verticalSpace(2),
+              Center(
+                child: Text(
+                  currentOrder,
+                  style: TextStyle(
+                      color: const Color(0xff3075B6),
+                      fontWeight: FontWeight.bold,
+                      fontSize: Sizes.font04),
+                ),
+              ),
+              verticalSpace(),
+              Text("Fabrica",
+                  style: TextStyle(
+                      fontWeight: FontWeight.normal, fontSize: Sizes.font08)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
                     padding: const EdgeInsets.all(0),
                     child: Checkbox(
-                        value: reportRisk,
+                        value: fabric,
                         shape: const CircleBorder(),
                         onChanged: (value) {
                           setState(() {
-                            reportRisk = value ?? false;
+                            fabric = value ?? false;
                           });
                         }),
                   ),
                   Text("SI"),
                   Checkbox(
-                      value: !reportRisk,
+                      value: !fabric,
                       shape: const CircleBorder(),
                       onChanged: (value) {
                         setState(() {
-                          reportRisk = !value!;
+                          fabric = !value!;
                         });
                       }),
                   Text("NO"),
                 ],
               ),
-            ),
-            verticalSpace(2),
-            customButton(context, "Enviar mensaje", () {},
-                backgroundColor: const Color(0xff4E8ED0)),
-            verticalSpace(),
-            customButton(context, "Reprogramar", () {},
-                backgroundColor: const Color(0xff4E8ED0)),
-            verticalSpace(3),
-          ]))),
+              verticalSpace(),
+              customInput("Agregar detalles del proceso en fábrica"),
+              verticalSpace(),
+              Container(
+                  width: double.infinity,
+                  alignment: Alignment.centerRight,
+                  child: customButton(context, "Notificar", () {},
+                      backgroundColor: const Color(0xff4E8ED0))),
+              verticalSpace(),
+              Text(
+                "EXW",
+                style: TextStyle(fontSize: Sizes.font08),
+              ),
+              Text(
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+                style: TextStyle(fontSize: Sizes.font14),
+              ),
+              verticalSpace(),
+              customProgress(70, customWidth: Sizes.width/2, customHeight: Sizes.tileMini*0.6, activeColor: const Color(0xff4E8ED0)),
+              verticalSpace(3),
+              Center(
+                child: customButton(context, "Enviar mensaje", () {},
+                    backgroundColor: const Color(0xff4E8ED0)),
+              )
+            ]),
+          ))),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,

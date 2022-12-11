@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project_trading/common/components/customDropdown.dart';
-import 'package:project_trading/common/components/ordersDropdown.dart';
-import 'package:project_trading/common/model/name.dart';
 import 'package:project_trading/common/sizes.dart';
+import 'package:project_trading/common/model/name.dart';
 import 'package:project_trading/trade/model/incoterm.dart';
-import 'package:project_trading/common/components/chip.dart';
-import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
 import 'package:project_trading/common/components/verticalSpac.dart';
-import 'package:project_trading/common/components/customProgress.dart';
+import 'package:project_trading/common/components/customDropdown.dart';
+import 'package:project_trading/common/components/ordersDropdown.dart';
+import 'package:project_trading/common/components/horizontalSpace.dart';
 
 class OrdersPage extends StatefulWidget {
   @override
@@ -51,7 +49,7 @@ class _OrdersPageState extends State<OrdersPage> {
               style: TextStyle(
                   color: Color(0xff103E6E), fontWeight: FontWeight.bold),
             ),
-            verticalSpace(2),
+            verticalSpace(),
             const Text("Busca segun el incoterm seleccionado"),
             verticalSpace(),
             customDropdown(currentOrderType, orderTypes, (value) {
@@ -60,49 +58,48 @@ class _OrdersPageState extends State<OrdersPage> {
               });
             }),
             verticalSpace(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(0),
-                    child: Checkbox(
-                        value: orderTypeSelected == 0,
-                        shape: const CircleBorder(),
-                        onChanged: (value) {
-                          setState(() {
-                            if (value!) {
-                              orderTypeSelected = 0;
-                            }
-                          });
-                        }),
-                  ),
-                  Text("EXW"),
-                  Checkbox(
-                      value: orderTypeSelected == 1,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(0),
+                  child: Checkbox(
+                      value: orderTypeSelected == 0,
                       shape: const CircleBorder(),
                       onChanged: (value) {
                         setState(() {
                           if (value!) {
-                            orderTypeSelected = 1;
+                            orderTypeSelected = 0;
                           }
                         });
                       }),
-                  Text("FOB"),
-                  Checkbox(
-                      value: orderTypeSelected == 2,
-                      shape: const CircleBorder(),
-                      onChanged: (value) {
-                        setState(() {
-                          if (value!) {
-                            orderTypeSelected = 2;
-                          }
-                        });
-                      }),
-                  Text("CIF"),
-                ],
-              ),
+                ),
+                Text("EXW"),
+                horizontalSpace(2),
+                Checkbox(
+                    value: orderTypeSelected == 1,
+                    shape: const CircleBorder(),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value!) {
+                          orderTypeSelected = 1;
+                        }
+                      });
+                    }),
+                Text("FOB"),
+                horizontalSpace(2),
+                Checkbox(
+                    value: orderTypeSelected == 2,
+                    shape: const CircleBorder(),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value!) {
+                          orderTypeSelected = 2;
+                        }
+                      });
+                    }),
+                Text("CIF"),
+              ],
             ),
             verticalSpace(),
             ordersDropdown(context, currentOrder, orders),

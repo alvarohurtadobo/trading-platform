@@ -9,7 +9,7 @@ Widget customButton(BuildContext context, String label, VoidCallback onTap,
   }
   return Container(
     width: Sizes.width * 0.45,
-    height: Sizes.tileNormal,
+    height: Sizes.tileMini,
     decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.all(Radius.circular(Sizes.tileNormal / 2))),
@@ -17,7 +17,7 @@ Widget customButton(BuildContext context, String label, VoidCallback onTap,
       onPressed: active ? onTap : null,
       child: Text(
         label,
-        style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
+        style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: Sizes.font12),
       ),
     ),
   );

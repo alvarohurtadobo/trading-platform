@@ -9,10 +9,12 @@ import 'package:project_trading/trade/ui/risksPage.dart';
 import 'package:project_trading/user/ui/signupPage.dart';
 import 'package:project_trading/trade/ui/ordersPage.dart';
 import 'package:project_trading/trade/ui/plannedPage.dart';
+import 'package:project_trading/trade/ui/locationPage.dart';
 import 'package:project_trading/trade/ui/timelinePage.dart';
 import 'package:project_trading/common/ui/startAsPage.dart';
 import 'package:project_trading/trade/ui/logisticsPage.dart';
 import 'package:project_trading/user/ui/simpleSignupPage.dart';
+import 'package:project_trading/trade/ui/qualityAssurance.dart';
 import 'package:project_trading/user/ui/notificationsPage.dart';
 import 'package:project_trading/trade/ui/incotermsMatrixPage.dart';
 
@@ -54,6 +56,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ChatsPage());
       case "/chat":
         return MaterialPageRoute(builder: (_) => ChatPage());
+      case "/quality":
+        return MaterialPageRoute(builder: (_) => QualityAssurancePage());
+      case "/locations":
+        return MaterialPageRoute(builder: (_) => LocationsPage());
       default:
         return errorRoute();
     }

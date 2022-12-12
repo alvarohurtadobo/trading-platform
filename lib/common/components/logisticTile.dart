@@ -25,7 +25,7 @@ Widget logisticTile(
               title,
               style: TextStyle(fontSize: Sizes.font08),
             ),
-            Text(body, style: TextStyle(fontSize: Sizes.font14)),
+            Text(body, maxLines: 2, style: TextStyle(fontSize: Sizes.font14)),
             customProgress(progress,
                 customWidth: Sizes.width / 2,
                 customHeight: Sizes.tileMini * 0.6,

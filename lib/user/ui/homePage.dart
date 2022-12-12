@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
               buttonTile("1_card", "Ordenes de compras", onTap: () {
                 Navigator.of(context).pushNamed("/orders");
               }, lightColor: false),
-              buttonTile("1_report", "Logistica", onTap: () {
+              buttonTile("1_report", "Logística", onTap: () {
                 Navigator.of(context).pushNamed("/logistics");
               }),
               buttonTile("1_profit", "Inspección de calidad", onTap: () {
@@ -73,6 +73,10 @@ class _HomePageState extends State<HomePage> {
               customButton(context, "Ver más", () {
                 Navigator.of(context).pushNamed("/notifications");
               },backgroundColor: const Color(0xff4E8ED0)),
+              verticalSpace(),
+              customButton(context, "Atención 24 horas", (){
+                
+              }),
               verticalSpace(3),
             ],
           ),

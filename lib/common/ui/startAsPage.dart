@@ -65,23 +65,27 @@ class _StartAsPageState extends State<StartAsPage> {
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Planificador", () {
-                        Navigator.of(context).pushReplacementNamed("/login");
+                        Navigator.of(context).pushNamed("/login");
                       },
                           active: true),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
-                      customButton(context, "Importador", () {}, active: true),
+                      customButton(context, "Importador", () {
+                        Navigator.of(context).pushNamed("/login");
+                      }, active: true),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
-                      customButton(context, "Exportador", () {}, active: true),
+                      customButton(context, "Exportador", () {
+                        Navigator.of(context).pushNamed("/login");
+                      }, active: true),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Registrar", () {
                         Navigator.of(context)
-                            .pushReplacementNamed("/presignup");
+                            .pushNamed("/presignup");
                       },
                           active: true,
                           backgroundColor: const Color(0xff29315D)),

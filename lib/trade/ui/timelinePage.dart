@@ -118,6 +118,10 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
                       alignment: Alignment.centerRight,
                       child: customButton(context, "Notificar", () {},
                           backgroundColor: const Color(0xff4E8ED0))),
+                  verticalSpace(),
+                  customButton(context, "Ver mapa", () {
+                    Navigator.of(context).pushNamed("/locations");
+                  }, backgroundColor: const Color(0xff3075B6)),
                   verticalSpace(3),
                 ]),
           ))),

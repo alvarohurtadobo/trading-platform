@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/sizes.dart';
+import 'package:project_trading/common/components/button.dart';
+import 'package:project_trading/common/model/currentState.dart';
 
 class SignupPage extends StatefulWidget {
   @override
@@ -55,18 +56,25 @@ class _SignupPageState extends State<SignupPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       customButton(context, "Planificador", () {
+                        userType = 'planificador';
                         Navigator.of(context).pushReplacementNamed("/signup-simple");
                       },
                           backgroundColor: const Color(0xff2F70AF)),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
-                      customButton(context, "Importador", () {},
+                      customButton(context, "Importador", () {
+                        userType = 'importador';
+                        Navigator.of(context).pushReplacementNamed("/signup-simple");
+                      },
                           backgroundColor: const Color(0xff2F70AF)),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
-                      customButton(context, "Exportador", () {},
+                      customButton(context, "Exportador", () {
+                        userType = 'exportador';
+                        Navigator.of(context).pushReplacementNamed("/signup-simple");
+                      },
                           backgroundColor: const Color(0xff2F70AF)),
                     ],
                   ),

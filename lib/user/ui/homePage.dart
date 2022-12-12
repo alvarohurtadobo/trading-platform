@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.of(context).pushNamed("/quality");
               }, lightColor: false),
               buttonTile("1_contacts", "Chat", onTap: () {
-                Navigator.of(context).pushNamed("/chat");
+                Navigator.of(context).pushNamed("/chats");
               }, count: 4),
               verticalSpace(),
               Container(

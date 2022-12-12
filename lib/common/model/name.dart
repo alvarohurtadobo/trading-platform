@@ -54,3 +54,20 @@ List<Name> orders = [
   Name(20,"#356"),
   Name(21,"#897"),
 ];
+
+List<Name> months = [
+  Name(1, "Enero"),
+  Name(2, "Febrero"),
+  Name(3, "Marzo"),
+  Name(4, "Abril"),
+  Name(5, "Mayo"),
+  Name(6, "Junio"),
+  Name(7, "Julio"),
+  Name(8, "Agosto"),
+  Name(9, "Septiembre"),
+  Name(10, "Octubre"),
+  Name(11, "Noviembre"),
+  Name(12, "Diciembre"),
+];
+
+List<Name> days = List.generate(31, (index) => Name(index+1, (index+1).toString())).toList();

@@ -9,7 +9,7 @@ Widget customButton(BuildContext context, String label, VoidCallback onTap,
   }
   return Container(
     width: Sizes.width * 0.45,
-    height: Sizes.tileMini,
+    height: Sizes.tileNormal,
     decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.all(Radius.circular(Sizes.tileNormal / 2))),

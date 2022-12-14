@@ -6,6 +6,7 @@ import 'package:project_trading/user/ui/chatsPage.dart';
 import 'package:project_trading/user/ui/loginPage.dart';
 import 'package:project_trading/trade/ui/orderPage.dart';
 import 'package:project_trading/trade/ui/risksPage.dart';
+import 'package:project_trading/user/ui/meet.dart';
 import 'package:project_trading/user/ui/signupPage.dart';
 import 'package:project_trading/trade/ui/ordersPage.dart';
 import 'package:project_trading/trade/ui/plannedPage.dart';
@@ -60,6 +61,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => QualityAssurancePage());
       case "/locations":
         return MaterialPageRoute(builder: (_) => LocationsPage());
+      case "/meet":
+        return MaterialPageRoute(builder: (_) => Meeting());
       default:
         return errorRoute();
     }

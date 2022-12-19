@@ -6,6 +6,7 @@ Widget chatInputField(Function(String) update) {
   return Container(
     width: Sizes.width,
     height: Sizes.tileNormal,
+    alignment: Alignment.bottomCenter,
     padding: EdgeInsets.symmetric(horizontal: Sizes.boxSeparation),
     margin: EdgeInsets.symmetric(
         vertical: Sizes.padding / 2, horizontal: Sizes.padding / 4),

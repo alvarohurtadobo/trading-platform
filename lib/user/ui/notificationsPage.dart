@@ -65,9 +65,10 @@ class _NotificationPageState extends State<NotificationPage> {
             verticalSpace(),
             Expanded(
                 child: ListView(
+              padding: EdgeInsets.all(0),
               children: notificationWidgets,
             )),
-            verticalSpace(3),
+            // verticalSpace(3),
           ])),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,

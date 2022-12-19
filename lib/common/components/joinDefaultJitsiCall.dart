@@ -26,8 +26,8 @@ Future<void> joinDefaultJitsiCall() async {
   var options = JitsiMeetingOptions(room: "projetTradingDeafultRoom")
     ..serverURL = serverUrl
     ..subject = "Test call"
-    ..userDisplayName = "User_${DateTime.now().toIso8601String().substring(10,16)}"
-    ..userEmail = "alf@mail.com"
+    ..userDisplayName = "User_${DateTime.now().toIso8601String()}"
+    ..userEmail = "email_${DateTime.now().toIso8601String()}@mail.com"
     ..iosAppBarRGBAColor = "#0080FF80"
     ..audioOnly = true
     ..audioMuted = false
@@ -39,7 +39,7 @@ Future<void> joinDefaultJitsiCall() async {
       "height": "100%",
       "enableWelcomePage": false,
       "chromeExtensionBanner": null,
-      "userInfo": {"displayName": "User_${DateTime.now().toIso8601String().substring(10,16)}"}
+      "userInfo": {"displayName": "User_${DateTime.now().toIso8601String()}"}
     };
 
   debugPrint("JitsiMeetingOptions: $options");

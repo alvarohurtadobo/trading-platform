@@ -46,7 +46,11 @@ class _RisksPageState extends State<RisksPage> {
                   color: Color(0xff103E6E), fontWeight: FontWeight.bold),
             ),
             verticalSpace(2),
-            const Text("Recorrido: (16 horas)"),
+            Text(
+              "Recorrido: (16 horas)",
+              style: TextStyle(
+                  color: const Color(0xff575454), fontSize: Sizes.font12),
+            ),
             verticalSpace(),
             customProgress(32,
                 activeColor: const Color(0xff4E8ED0),
@@ -92,8 +96,9 @@ class _RisksPageState extends State<RisksPage> {
               ),
             ),
             verticalSpace(2),
-            customButton(context, "Enviar mensaje", () {},
-                backgroundColor: const Color(0xff4E8ED0)),
+            customButton(context, "Enviar mensaje", () {
+              Navigator.of(context).pushNamed("/chats");
+            }, backgroundColor: const Color(0xff4E8ED0)),
             verticalSpace(),
             customButton(context, "Reprogramar", () {},
                 backgroundColor: const Color(0xff4E8ED0)),

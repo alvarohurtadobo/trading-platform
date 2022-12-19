@@ -105,11 +105,15 @@ class _OrderPageState extends State<OrderPage> {
                 style: TextStyle(fontSize: Sizes.font14),
               ),
               verticalSpace(),
-              customProgress(70, customWidth: Sizes.width/2, customHeight: Sizes.tileMini*0.6, activeColor: const Color(0xff4E8ED0)),
+              customProgress(70,
+                  customWidth: Sizes.width / 2,
+                  customHeight: Sizes.tileMini * 0.6,
+                  activeColor: const Color(0xff4E8ED0)),
               verticalSpace(3),
               Center(
-                child: customButton(context, "Enviar mensaje", () {},
-                    backgroundColor: const Color(0xff4E8ED0)),
+                child: customButton(context, "Enviar mensaje", () {
+                  Navigator.of(context).pushNamed("/chats");
+                }, backgroundColor: const Color(0xff4E8ED0)),
               )
             ]),
           ))),

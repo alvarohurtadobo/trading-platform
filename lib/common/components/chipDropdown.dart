@@ -5,7 +5,7 @@ import 'package:project_trading/common/model/name.dart';
 Widget chipDropdown(
     int? currentId, List<Name> items, String hint, Function(int?) onChanged) {
   return Container(
-    width: Sizes.width / 6.4,
+    width: Sizes.width / 5.8,
     height: Sizes.tileMicro,
     padding: EdgeInsets.only(left: Sizes.padding / 8),
     decoration: BoxDecoration(

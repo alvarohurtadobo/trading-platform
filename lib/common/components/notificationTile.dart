@@ -16,10 +16,14 @@ Widget notificationTile(String message, String time,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            message,
-            style:
-                TextStyle(color: const Color(0xff575454), fontSize: Sizes.font12),
+          SizedBox(
+            width: 0.65*(Sizes.width - Sizes.padding),
+            child: Text(
+              message,
+              maxLines: 1,
+              style:
+                  TextStyle(color: const Color(0xff575454), fontSize: Sizes.font12),
+            ),
           ),
           arrowInsteadOfTime
               ? const Icon(

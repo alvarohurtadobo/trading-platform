@@ -23,49 +23,53 @@ class _ChatPageState extends State<ChatPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     Sizes.initSizes(width, height);
+    double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
     return Scaffold(
       appBar: chatAppBar(context),
       backgroundColor: Colors.white,
       body: SizedBox(
           width: Sizes.width,
-          height: Sizes.height,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Container(
-              width: Sizes.width,
-              height: Sizes.tileBig,
-              alignment: Alignment.centerLeft,
-              color: const Color(0xffB4D8F5),
-              padding: EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  chatAvatar(0),
-                  horizontalSpace(),
-                  Text(
-                    currentChatName,
-                    style: const TextStyle(
-                        color: Color(0xff4C93D9), fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-                child: ListView(
-              scrollDirection: Axis.vertical,
-              reverse: true,
-              children: myChatItems.reversed
-                  .map((e) => chatItem(e.message, e.datetime!,
-                      sent: e.sent!, placeholder: e.placeholder))
-                  .toList(),
-            )),
-            chatInputField((message) {
-              setState(() {
-                myChatItems.add(ChatItem(message, sent: true));
-              });
-            })
-          ])),
+          height: Sizes.height - keyboardHeight,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  width: Sizes.width,
+                  height: Sizes.tileBig,
+                  alignment: Alignment.centerLeft,
+                  color: const Color(0xffB4D8F5),
+                  padding: EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      chatAvatar(0),
+                      horizontalSpace(),
+                      Text(
+                        currentChatName,
+                        style: const TextStyle(
+                            color: Color(0xff4C93D9),
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                    child: ListView(
+                  scrollDirection: Axis.vertical,
+                  reverse: true,
+                  children: myChatItems.reversed
+                      .map((e) => chatItem(e.message, e.datetime!,
+                          sent: e.sent!, placeholder: e.placeholder))
+                      .toList(),
+                )),
+                chatInputField((message) {
+                  setState(() {
+                    myChatItems.add(ChatItem(message, sent: true));
+                  });
+                })
+              ])),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,

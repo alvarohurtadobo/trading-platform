@@ -77,3 +77,5 @@ List<Name> days =
 List<Name> quality1 = [Name(1, "Cuello de Botella")];
 List<Name> quality2 = [Name(1, "Calidad del producto")];
 List<Name> quality3 = [Name(1, "Manejo del producto")];
+
+List<Name> rifs = [Name(1, "J"),Name(2, "Q"),Name(3, "K"),Name(4, "L"),];

@@ -73,11 +73,6 @@ class _HomePageState extends State<HomePage> {
               customButton(context, "Ver más", () {
                 Navigator.of(context).pushNamed("/notifications");
               },backgroundColor: const Color(0xff4E8ED0)),
-              verticalSpace(),
-              customButton(context, "Atención 24 horas", (){
-                print("Launch");
-                Navigator.of(context).pushNamed("/meet");
-              }),
               verticalSpace(3),
             ],
           ),

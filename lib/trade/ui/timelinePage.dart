@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/chip.dart';
 import 'package:project_trading/common/components/button.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
 import 'package:project_trading/common/components/calendar.dart';
 import 'package:project_trading/common/components/customInput.dart';
@@ -67,7 +68,7 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
                     style: TextStyle(fontSize: Sizes.font12),
                   ),
                   verticalSpace(),
-                  calendar(small: true),
+                  userType != "planificador" ? Container() : calendar(small: true),
                   verticalSpace(),
                   Container(
                     alignment: Alignment.centerLeft,
@@ -110,16 +111,16 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
                             fontSize: Sizes.font10,
                             color: const Color(0xff575454))),
                   ),
-                  verticalSpace(2),
-                  customInput("Agregar detalles"),
-                  verticalSpace(),
-                  Container(
+                  userType != "planificador" ? Container() : verticalSpace(2),
+                  userType != "planificador" ? Container() : customInput("Agregar detalles"),
+                  userType != "planificador" ? Container() : verticalSpace(),
+                  userType != "planificador" ? Container() : Container(
                       width: double.infinity,
                       alignment: Alignment.centerRight,
                       child: customButton(context, "Notificar", () {},
                           backgroundColor: const Color(0xff4E8ED0))),
-                  verticalSpace(),
-                  customButton(context, "Ver mapa", () {
+                  userType != "planificador" ? Container() : verticalSpace(),
+                  userType != "planificador" ? Container() : customButton(context, "Ver mapa", () {
                     Navigator.of(context).pushNamed("/locations");
                   }, backgroundColor: const Color(0xff3075B6)),
                   verticalSpace(3),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_trading/common/sizes.dart';
 
 AppBar myAppBar(BuildContext context) {
   return AppBar(

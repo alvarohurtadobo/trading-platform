@@ -57,25 +57,22 @@ class _SignupPageState extends State<SignupPage> {
                     children: [
                       customButton(context, "Planificador", () {
                         userType = 'planificador';
-                        Navigator.of(context).pushReplacementNamed("/signup-simple");
-                      },
-                          backgroundColor: const Color(0xff2F70AF)),
+                        Navigator.of(context).pushNamed("/signup-simple");
+                      }, backgroundColor: const Color(0xff2F70AF)),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Importador", () {
                         userType = 'importador';
-                        Navigator.of(context).pushReplacementNamed("/signup-simple");
-                      },
-                          backgroundColor: const Color(0xff2F70AF)),
+                        Navigator.of(context).pushNamed("/signup-extended");
+                      }, backgroundColor: const Color(0xff2F70AF)),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Exportador", () {
                         userType = 'exportador';
-                        Navigator.of(context).pushReplacementNamed("/signup-simple");
-                      },
-                          backgroundColor: const Color(0xff2F70AF)),
+                        Navigator.of(context).pushNamed("/signup-extended");
+                      }, backgroundColor: const Color(0xff2F70AF)),
                     ],
                   ),
                 ))

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_trading/user/ui/meet.dart';
 import 'package:project_trading/common/ui/splash.dart';
 import 'package:project_trading/user/ui/chatPage.dart';
 import 'package:project_trading/user/ui/homePage.dart';
@@ -6,17 +7,20 @@ import 'package:project_trading/user/ui/chatsPage.dart';
 import 'package:project_trading/user/ui/loginPage.dart';
 import 'package:project_trading/trade/ui/orderPage.dart';
 import 'package:project_trading/trade/ui/risksPage.dart';
-import 'package:project_trading/user/ui/meet.dart';
 import 'package:project_trading/user/ui/signupPage.dart';
 import 'package:project_trading/trade/ui/ordersPage.dart';
 import 'package:project_trading/trade/ui/plannedPage.dart';
+import 'package:project_trading/trade/ui/realtimeMap.dart';
 import 'package:project_trading/trade/ui/locationPage.dart';
 import 'package:project_trading/trade/ui/timelinePage.dart';
 import 'package:project_trading/common/ui/startAsPage.dart';
+import 'package:project_trading/user/ui/exportHomePage.dart';
 import 'package:project_trading/trade/ui/logisticsPage.dart';
 import 'package:project_trading/user/ui/simpleSignupPage.dart';
+import 'package:project_trading/trade/ui/realTimelinePage.dart';
 import 'package:project_trading/trade/ui/qualityAssurance.dart';
 import 'package:project_trading/user/ui/notificationsPage.dart';
+import 'package:project_trading/user/ui/extendedSignupPage.dart';
 import 'package:project_trading/trade/ui/incotermsMatrixPage.dart';
 
 class RouteGenerator {
@@ -31,12 +35,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SignupPage());
       case "/signup-simple":
         return MaterialPageRoute(builder: (_) => SimpleSignupPage());
-      case "/signup-complex":
-        return MaterialPageRoute(builder: (_) => SimpleSignupPage());
+      case "/signup-extended":
+        return MaterialPageRoute(builder: (_) => ExtendedSignupPage());
       case "/login":
         return MaterialPageRoute(builder: (_) => LoginPage());
       case "/home":
         return MaterialPageRoute(builder: (_) => HomePage());
+      case "/export-home":
+        return MaterialPageRoute(builder: (_) => ExportHomePage());
       case "/incoterm-matrix":
         return MaterialPageRoute(builder: (_) => IncotermsMatrixPage());
       case "/risks":
@@ -49,6 +55,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LogisticsPage());
       case "/programmed-timeline":
         return MaterialPageRoute(builder: (_) => ProgrammedTimeLinePage());
+      case "/real-timeline":
+        return MaterialPageRoute(builder: (_) => RealTimeLinePage());
       case "/planned-timeline":
         return MaterialPageRoute(builder: (_) => PlannedTimeLinePage());
       case "/notifications":
@@ -61,6 +69,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => QualityAssurancePage());
       case "/locations":
         return MaterialPageRoute(builder: (_) => LocationsPage());
+      case "/realtime-map":
+        return MaterialPageRoute(builder: (_) => RealtimeMapPage());
       case "/meet":
         return MaterialPageRoute(builder: (_) => Meeting());
       default:

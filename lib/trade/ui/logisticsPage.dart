@@ -26,11 +26,6 @@ class _LogisticsPageState extends State<LogisticsPage> {
     double height = MediaQuery.of(context).size.height;
     Sizes.initSizes(width, height);
 
-    List<Incoterm> displayIncoterms = myIncoterms.sublist(0, 3);
-    if (seeAll) {
-      displayIncoterms = myIncoterms;
-    }
-
     return Scaffold(
       appBar: myAppBar(context),
       backgroundColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/components/customTextInput.dart';
@@ -73,9 +74,13 @@ class _LoginPageState extends State<LoginPage> {
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Entrar", () {
-                        Navigator.of(context).pushReplacementNamed("/home");
-                      },
-                          active: true),
+                        if (userType == "planificador") {
+                          Navigator.of(context).pushReplacementNamed("/home");
+                        } else {
+                          Navigator.of(context)
+                              .pushReplacementNamed("/export-home");
+                        }
+                      }, active: true),
                     ],
                   ),
                 ))

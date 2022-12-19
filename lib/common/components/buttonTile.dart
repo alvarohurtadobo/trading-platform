@@ -6,7 +6,7 @@ Widget buttonTile(String assetName, String title,
     {VoidCallback? onTap, bool lightColor = true, int count = 0}) {
   return GestureDetector(
     onTap: onTap,
-    child: Container(
+    child: SizedBox(
       width: Sizes.width - 2 * Sizes.padding,
       height: Sizes.tileNormal + Sizes.bullet,
       child: Stack(

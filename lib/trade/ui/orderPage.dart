@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
-import 'package:project_trading/trade/model/incoterm.dart';
 import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
@@ -27,11 +26,6 @@ class _OrderPageState extends State<OrderPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     Sizes.initSizes(width, height);
-
-    List<Incoterm> displayIncoterms = myIncoterms.sublist(0, 3);
-    if (seeAll) {
-      displayIncoterms = myIncoterms;
-    }
 
     return Scaffold(
       appBar: myAppBar(context),

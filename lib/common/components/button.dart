@@ -17,7 +17,10 @@ Widget customButton(BuildContext context, String label, VoidCallback onTap,
       onPressed: active ? onTap : null,
       child: Text(
         label,
-        style: TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: Sizes.font12),
+        style: TextStyle(
+            color: textColor,
+            fontWeight: FontWeight.bold,
+            fontSize: Sizes.font10),
       ),
     ),
   );

@@ -2,28 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
 
 Widget customTextInput(
-  BuildContext context,
-  String title,
-  Function(String) setParameter, {
-  String hint = "",
-}) {
+    BuildContext context, String title, Function(String) setParameter,
+    {String hint = "", bool coloured = false}) {
   return Container(
     width: Sizes.width,
     height: Sizes.tileMedium,
-    padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
+    margin: EdgeInsets.symmetric(horizontal: Sizes.padding),
+    alignment: Alignment.bottomCenter,
+    decoration: BoxDecoration(
+        border: Border(
+            bottom: BorderSide(
+                color: coloured ? const Color(0x8f2F2F2F) : Colors.white))),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: coloured ? const Color(0xff2B69A6) : Colors.white),
         ),
         TextField(
           onChanged: setParameter,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: coloured ? const Color(0xffA1A1A1) : Colors.white),
           decoration: InputDecoration(
               hintText: hint,
-              hintStyle: const TextStyle(color: Color(0xff4E8ED0))),
+              border: InputBorder.none,
+              hintStyle: TextStyle(
+                  color: coloured ? const Color(0xffA1A1A1) : Colors.white60)),
         )
       ],
     ),

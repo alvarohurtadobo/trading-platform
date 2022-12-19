@@ -86,11 +86,12 @@ Widget calendar({bool small = false}) {
 Widget titleBullet(String title, {bool small = false}) {
   double parentSide =
       small ? (0.6 * Sizes.width) : (Sizes.width - 2 * Sizes.padding);
-  double childSide = (parentSide - Sizes.padding / 2) / 7;
+  double childSide = (parentSide - Sizes.padding / 2) / 7-1;
   return SizedBox(
     width: childSide,
     child: Text(
-      title, textAlign: TextAlign.center,
+      title,
+      textAlign: TextAlign.center,
       style: TextStyle(color: Colors.white, fontSize: Sizes.font16),
     ),
   );
@@ -99,7 +100,7 @@ Widget titleBullet(String title, {bool small = false}) {
 Widget dateBullet(int thisDate, {bool small = false}) {
   double parentSide =
       small ? (0.6 * Sizes.width) : (Sizes.width - 2 * Sizes.padding);
-  double childSide = (parentSide - Sizes.padding / 2) / 7;
+  double childSide = (parentSide - Sizes.padding / 2) / 7-1;
   Color backgroundColor = Colors.transparent;
   if (thisDate == date1) {
     backgroundColor = const Color(0xffB1D4F2);

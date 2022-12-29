@@ -8,18 +8,15 @@ import 'package:project_trading/user/ui/loginPage.dart';
 import 'package:project_trading/trade/ui/orderPage.dart';
 import 'package:project_trading/trade/ui/risksPage.dart';
 import 'package:project_trading/user/ui/signupPage.dart';
-import 'package:project_trading/trade/ui/ordersPage.dart';
 import 'package:project_trading/trade/ui/plannedPage.dart';
 import 'package:project_trading/trade/ui/realtimeMap.dart';
 import 'package:project_trading/trade/ui/locationPage.dart';
 import 'package:project_trading/trade/ui/timelinePage.dart';
 import 'package:project_trading/common/ui/startAsPage.dart';
-import 'package:project_trading/user/ui/exportHomePage.dart';
 import 'package:project_trading/trade/ui/logisticsPage.dart';
 import 'package:project_trading/user/ui/simpleSignupPage.dart';
 import 'package:project_trading/trade/ui/realTimelinePage.dart';
 import 'package:project_trading/trade/ui/qualityAssurance.dart';
-import 'package:project_trading/user/ui/notificationsPage.dart';
 import 'package:project_trading/user/ui/extendedSignupPage.dart';
 import 'package:project_trading/trade/ui/incotermsMatrixPage.dart';
 
@@ -40,15 +37,16 @@ class RouteGenerator {
       case "/login":
         return MaterialPageRoute(builder: (_) => LoginPage());
       case "/home":
-        return MaterialPageRoute(builder: (_) => HomePage());
-      case "/export-home":
-        return MaterialPageRoute(builder: (_) => ExportHomePage());
+        return MaterialPageRoute(builder: (_) => const HomePage(initialIndex: 0,));
+      // case "/export-home": deletethis
+      //   return MaterialPageRoute(builder: (_) => ExportHomePage());
       case "/incoterm-matrix":
         return MaterialPageRoute(builder: (_) => IncotermsMatrixPage());
       case "/risks":
         return MaterialPageRoute(builder: (_) => RisksPage());
       case "/orders":
-        return MaterialPageRoute(builder: (_) => OrdersPage());
+        return MaterialPageRoute(builder: (_) => const HomePage(initialIndex: 2,));
+        // return MaterialPageRoute(builder: (_) => OrdersPage());
       case "/order":
         return MaterialPageRoute(builder: (_) => OrderPage());
       case "/logistics":
@@ -60,7 +58,8 @@ class RouteGenerator {
       case "/planned-timeline":
         return MaterialPageRoute(builder: (_) => PlannedTimeLinePage());
       case "/notifications":
-        return MaterialPageRoute(builder: (_) => NotificationPage());
+        return MaterialPageRoute(builder: (_) => const HomePage(initialIndex: 1,));
+        // return MaterialPageRoute(builder: (_) => NotificationPage());
       case "/chats":
         return MaterialPageRoute(builder: (_) => ChatsPage());
       case "/chat":

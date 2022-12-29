@@ -31,45 +31,7 @@ class _NotificationPageState extends State<NotificationPage> {
     return Scaffold(
       appBar: myAppBar(context),
       backgroundColor: Colors.white,
-      body: SizedBox(
-          width: Sizes.width,
-          height: Sizes.height,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Center(
-              child: Text(
-                "Notificaciones",
-                style: TextStyle(
-                    color: const Color(0xff4E8ED0),
-                    fontWeight: FontWeight.bold,
-                    fontSize: Sizes.font06),
-              ),
-            ),
-            verticalSpace(2),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                chipDropdown(selectedMonth, months, "MES", (value) {
-                  setState(() {
-                    selectedMonth = value;
-                  });
-                }),
-                horizontalSpace(),
-                chipDropdown(selectedDay, days, "DÍA", (value) {
-                  setState(() {
-                    selectedDay = value;
-                  });
-                }),
-              ],
-            ),
-            verticalSpace(),
-            Expanded(
-                child: ListView(
-              padding: EdgeInsets.all(0),
-              children: notificationWidgets,
-            )),
-            // verticalSpace(3),
-          ])),
+      body: Container(),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,

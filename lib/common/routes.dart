@@ -59,6 +59,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PlannedTimeLinePage());
       case "/notifications":
         return MaterialPageRoute(builder: (_) => const HomePage(initialIndex: 1,));
+      case "/profile":
+        return MaterialPageRoute(builder: (_) => const HomePage(initialIndex: 3,));
         // return MaterialPageRoute(builder: (_) => NotificationPage());
       case "/chats":
         return MaterialPageRoute(builder: (_) => ChatsPage());

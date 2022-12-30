@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_trading/common/components/calendar.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/chip.dart';
 import 'package:project_trading/common/components/button.dart';
@@ -88,7 +89,7 @@ class _RealTimeLinePageState extends State<RealTimeLinePage> {
                           padding:
                               EdgeInsets.symmetric(horizontal: Sizes.padding),
                           child: Text(
-                            "Lunes 10 de octubre de 2022 a las 6:40AM",
+                            "${weekdays[date1.weekday]} ${date1.day} de ${months[date1.month]} de ${date1.year} a las 6:40AM",
                             style: TextStyle(
                                 fontSize: Sizes.font10,
                                 color: const Color(0xff575454)),
@@ -111,7 +112,7 @@ class _RealTimeLinePageState extends State<RealTimeLinePage> {
                           padding:
                               EdgeInsets.symmetric(horizontal: Sizes.padding),
                           child: Text(
-                            "Jueves 13 de octubre de 2022 a las 6:40AM",
+                            "${weekdays[date2.weekday]} ${date2.day} de ${months[date2.month]} de ${date2.year} a las 6:40AM",
                             style: TextStyle(
                                 fontSize: Sizes.font10,
                                 color: const Color(0xff575454)),
@@ -199,8 +200,21 @@ class _RealTimeLinePageState extends State<RealTimeLinePage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/sizes.dart';
-import 'package:project_trading/common/components/toast.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:project_trading/common/components/toast.dart';
 import 'package:project_trading/common/components/gpsAppBar.dart';
 import 'package:project_trading/common/components/verticalSpac.dart';
 import 'package:project_trading/common/components/horizontalSpace.dart';
+
+bool initial = true;
+
+
 
 class LocationsPage extends StatefulWidget {
   @override
@@ -15,11 +20,11 @@ class _LocationsPageState extends State<LocationsPage> {
   int _selectedIndex = 0;
   int? selectedDay;
   int? selectedMonth;
-  bool loadingSelection = true;
+  bool loadingSelection = false;
 
   MapController controller = MapController(
-    initMapWithUserPosition: true,
-    // initPosition: GeoPoint(latitude: 39.465038, longitude: -0.384516),
+    initMapWithUserPosition: false,
+    initPosition: origin,
     // areaLimit: BoundingBox(
     //   east: 3.384516,
     //   north: 42.465038,
@@ -32,17 +37,6 @@ class _LocationsPageState extends State<LocationsPage> {
   void dispose() {
     controller.dispose();
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 3)).then((value) {
-      controller.advancedPositionPicker();
-      setState(() {
-        loadingSelection = false;
-      });
-    });
   }
 
   @override
@@ -60,74 +54,87 @@ class _LocationsPageState extends State<LocationsPage> {
         height: Sizes.height,
         child: Column(
           children: [
-            SizedBox(
-              width: Sizes.width,
-              height: Sizes.width,
-              child: OSMFlutter(
-                controller: controller,
-                showZoomController: true,
-                trackMyPosition: true,
-                initZoom: 12,
-                minZoomLevel: 8,
-                maxZoomLevel: 14,
-                stepZoom: 1.0,
-                mapIsLoading: Center(
-                    child: SizedBox(
-                        width: Sizes.padding/2,
-                        height: Sizes.padding/2,
-                        child: const CircularProgressIndicator())),
-                onLocationChanged: (myLocation) {
-                  print("My location is $myLocation");
-                },
-                onGeoPointClicked: (geoPoint) async {
-                  print("Clicked on $geoPoint");
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        geoPoint.toMap().toString(),
-                      ),
-                      action: SnackBarAction(
-                        onPressed: () =>
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar(),
-                        label: "hide",
-                      ),
-                    ),
-                  );
-                },
-                userLocationMarker: UserLocationMaker(
-                  personMarker: const MarkerIcon(
-                    icon: Icon(
-                      Icons.location_history_rounded,
+            Stack(
+              children: [
+                SizedBox(
+                  width: Sizes.width,
+                  height: Sizes.width,
+                  child: OSMFlutter(
+                      controller: controller,
+                      showZoomController: true,
+                      trackMyPosition: false,
+                      initZoom: 12,
+                      minZoomLevel: 8,
+                      maxZoomLevel: 14,
+                      stepZoom: 1.0,
+                      mapIsLoading: Center(
+                          child: SizedBox(
+                              width: Sizes.padding / 2,
+                              height: Sizes.padding / 2,
+                              child: const CircularProgressIndicator())),
+                      onLocationChanged: (myLocation) {
+                        print("My location is $myLocation");
+                      },
+                      showDefaultInfoWindow: true,
+                      staticPoints: [
+                        StaticPositionGeoPoint(
+                            "0",
+                            const MarkerIcon(
+                              icon: Icon(
+                                Icons.location_on,
+                                color: Color(0xffB1D4F2),
+                                size: 60,
+                              ),
+                            ),
+                            [origin]),
+                        StaticPositionGeoPoint(
+                            "1",
+                            const MarkerIcon(
+                              icon: Icon(
+                                Icons.location_on,
+                                color: Color(0xff74CF6F),
+                                size: 60,
+                              ),
+                            ),
+                            [destiny]),
+                      ],
+                      userLocationMarker: UserLocationMaker(
+                          personMarker: const MarkerIcon(
+                            icon: Icon(
+                              Icons.person,
+                              size: 1,
+                            ),
+                          ),
+                          directionArrowMarker: const MarkerIcon(
+                            icon: Icon(Icons.person, size: 1),
+                          )),
+                      onGeoPointClicked: (geoPoint) async {
+                        print("Clicked on $geoPoint");
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              geoPoint.toMap().toString(),
+                            ),
+                            action: SnackBarAction(
+                              onPressed: () => ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar(),
+                              label: "hide",
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+                SizedBox(
+                  width: Sizes.width,
+                  height: Sizes.width,
+                  child: const Center(
+                    child: Icon(
+                      Icons.gps_not_fixed_outlined,
                       color: Colors.red,
-                      size: 48,
                     ),
                   ),
-                  directionArrowMarker: const MarkerIcon(
-                    icon: Icon(
-                      Icons.double_arrow,
-                      size: 48,
-                    ),
-                  ),
-                ),
-                roadConfiguration: RoadConfiguration(
-                  startIcon: const MarkerIcon(
-                    icon: Icon(
-                      Icons.person,
-                      size: 64,
-                      color: Colors.brown,
-                    ),
-                  ),
-                  roadColor: Colors.yellowAccent,
-                ),
-                markerOption: MarkerOption(
-                    defaultMarker: const MarkerIcon(
-                  icon: Icon(
-                    Icons.person_pin_circle,
-                    color: Colors.blue,
-                    size: 56,
-                  ),
-                )),
-              ),
+                )
+              ],
             ),
             GestureDetector(
               onTap: () async {
@@ -137,13 +144,20 @@ class _LocationsPageState extends State<LocationsPage> {
                 setState(() {
                   loadingSelection = true;
                 });
-                await Future.delayed(Duration(seconds: 4));
-                GeoPoint p =
-                    await controller.getCurrentPositionAdvancedPositionPicker();
-                controller.advancedPositionPicker();
+                GeoPoint p = await controller.centerMap;
                 print("Position $p");
-                showToast(
-                    "Ubicación seleccionada es ${p.latitude}, ${p.longitude}");
+                controller.setStaticPosition([p], initial ? "0" : "1");
+                if (initial) {
+                  origin = p;
+                  showToast(
+                      "Origen seleccionado es ${p.latitude}, ${p.longitude}");
+                } else {
+                  destiny = p;
+                  showToast(
+                      "Destino seleccionado es ${p.latitude}, ${p.longitude}");
+                }
+                initial = !initial;
+
                 setState(() {
                   loadingSelection = false;
                 });
@@ -173,6 +187,64 @@ class _LocationsPageState extends State<LocationsPage> {
                         : const Icon(Icons.arrow_forward)
                   ],
                 ),
+              ),
+            ),
+            verticalSpace(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      controller.goToLocation(origin);
+                      controller.setZoom(zoomLevel: 12);
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          width: Sizes.tileMini,
+                          height: Sizes.tileMini,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: const Color(0xffB1D4F2),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(Sizes.bullet))),
+                        ),
+                        horizontalSpace(),
+                        const Text(
+                          "Origen",
+                          style: TextStyle(color: Color(0xff575454)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  horizontalSpace(),
+                  GestureDetector(
+                    onTap: () {
+                      controller.goToLocation(destiny);
+                      controller.setZoom(zoomLevel: 12);
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          width: Sizes.tileMini,
+                          height: Sizes.tileMini,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: const Color(0xff74CF6F),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(Sizes.bullet))),
+                        ),
+                        horizontalSpace(),
+                        const Text(
+                          "Destino",
+                          style: TextStyle(color: Color(0xff575454)),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
             verticalSpace(),
@@ -267,16 +339,28 @@ class _LocationsPageState extends State<LocationsPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 
   Widget positionTile(IconData icon, Color color, String message) {
     return GestureDetector(
       onTap: () {
-        GeoPoint p = GeoPoint(latitude: 39.457087, longitude: -0.388293);
-        controller.goToLocation(p);
+        controller.goToLocation(destiny);
       },
       child: Container(
         width: double.infinity,

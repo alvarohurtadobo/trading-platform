@@ -25,13 +25,22 @@ class _LoginPageState extends State<LoginPage> {
         child: Stack(
           children: [
             Positioned(
-                top: Sizes.height * 0.32,
+                top: 0,
                 left: 0,
                 child: Container(
-                  width: Sizes.width,
-                  height: Sizes.height * 0.68,
-                  color: const Color(0xff2F70AF),
-                )),
+                    width: Sizes.width,
+                    height: Sizes.height,
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Color(0xff2F70AF),
+                        Color(0xff2F70AF),
+                        Color(0xff2F70AF),
+                      ],
+                    )))),
             Positioned(
               left: 0,
               top: 0,

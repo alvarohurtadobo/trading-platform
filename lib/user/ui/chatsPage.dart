@@ -94,8 +94,21 @@ class _ChatsPageState extends State<ChatsPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

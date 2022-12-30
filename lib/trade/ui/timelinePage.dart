@@ -68,7 +68,11 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
                     style: TextStyle(fontSize: Sizes.font12),
                   ),
                   verticalSpace(),
-                  userType != "planificador" ? Container() : calendar(small: true),
+                  userType != "planificador"
+                      ? Container()
+                      : calendar(() {
+                          setState(() {});
+                        }, small: true),
                   verticalSpace(),
                   Container(
                     alignment: Alignment.centerLeft,
@@ -86,7 +90,7 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
                     padding:
                         EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
                     child: Text(
-                      "Lunes 10 de octubre de 2022 a las 6:40AM",
+                      "${weekdays[date1.weekday]} ${date1.day} de ${months[date1.month]} de ${date1.year} a las 6:40AM",
                       style: TextStyle(
                           fontSize: Sizes.font10,
                           color: const Color(0xff575454)),
@@ -106,23 +110,23 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
                     alignment: Alignment.centerLeft,
                     padding:
                         EdgeInsets.symmetric(horizontal: Sizes.padding / 2),
-                    child: Text("Jueves 13 de octubre de 2022 a las 6:40AM",
+                    child: Text("${weekdays[date2.weekday]} ${date2.day} de ${months[date2.month]} de ${date2.year} a las 6:40AM",
                         style: TextStyle(
                             fontSize: Sizes.font10,
                             color: const Color(0xff575454))),
                   ),
                   userType != "planificador" ? Container() : verticalSpace(2),
-                  userType != "planificador" ? Container() : customInput("Agregar detalles"),
+                  userType != "planificador"
+                      ? Container()
+                      : customInput("Agregar detalles"),
                   userType != "planificador" ? Container() : verticalSpace(),
-                  userType != "planificador" ? Container() : Container(
-                      width: double.infinity,
-                      alignment: Alignment.centerRight,
-                      child: customButton(context, "Notificar", () {},
-                          backgroundColor: const Color(0xff4E8ED0))),
-                  userType != "planificador" ? Container() : verticalSpace(),
-                  userType != "planificador" ? Container() : customButton(context, "Ver mapa", () {
-                    Navigator.of(context).pushNamed("/locations");
-                  }, backgroundColor: const Color(0xff3075B6)),
+                  userType != "planificador"
+                      ? Container()
+                      : Container(
+                          width: double.infinity,
+                          alignment: Alignment.centerRight,
+                          child: customButton(context, "Notificar", () {},
+                              backgroundColor: const Color(0xff4E8ED0))),
                   verticalSpace(3),
                 ]),
           ))),
@@ -172,8 +176,21 @@ class _ProgrammedTimeLinePageState extends State<ProgrammedTimeLinePage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

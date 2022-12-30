@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/components/verticalSpac.dart';
 import 'package:project_trading/common/components/realtimeAppbar.dart';
 import 'package:project_trading/common/components/horizontalSpace.dart';
@@ -17,8 +18,8 @@ class _RealtimeMapPageState extends State<RealtimeMapPage> {
   bool loadingSelection = true;
 
   MapController controller = MapController(
-    initMapWithUserPosition: true,
-    // initPosition: GeoPoint(latitude: 39.465038, longitude: -0.384516),
+    initMapWithUserPosition: false,
+    initPosition: origin,
     // areaLimit: BoundingBox(
     //   east: 3.384516,
     //   north: 42.465038,
@@ -52,7 +53,7 @@ class _RealtimeMapPageState extends State<RealtimeMapPage> {
               child: OSMFlutter(
                 controller: controller,
                 showZoomController: true,
-                trackMyPosition: true,
+                trackMyPosition: false,
                 initZoom: 12,
                 minZoomLevel: 8,
                 maxZoomLevel: 14,
@@ -65,55 +66,38 @@ class _RealtimeMapPageState extends State<RealtimeMapPage> {
                 onLocationChanged: (myLocation) {
                   print("My location is $myLocation");
                 },
-                onGeoPointClicked: (geoPoint) async {
-                  print("Clicked on $geoPoint");
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        geoPoint.toMap().toString(),
+                staticPoints: [
+                  StaticPositionGeoPoint(
+                      "0",
+                      const MarkerIcon(
+                        icon: Icon(
+                          Icons.add_location_alt_sharp,
+                          color: Color(0xffB1D4F2),
+                          size: 60,
+                        ),
                       ),
-                      action: SnackBarAction(
-                        onPressed: () =>
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar(),
-                        label: "hide",
+                      [origin]),
+                  StaticPositionGeoPoint(
+                      "1",
+                      const MarkerIcon(
+                        icon: Icon(
+                          Icons.location_on,
+                          color: Color(0xff74CF6F),
+                          size: 60,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                      [destiny]),
+                ],
                 userLocationMarker: UserLocationMaker(
-                  personMarker: const MarkerIcon(
-                    icon: Icon(
-                      Icons.location_history_rounded,
-                      color: Colors.red,
-                      size: 48,
+                    personMarker: const MarkerIcon(
+                      icon: Icon(
+                        Icons.person,
+                        size: 1,
+                      ),
                     ),
-                  ),
-                  directionArrowMarker: const MarkerIcon(
-                    icon: Icon(
-                      Icons.location_on_rounded,
-                      size: 64,
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-                roadConfiguration: RoadConfiguration(
-                  startIcon: const MarkerIcon(
-                    icon: Icon(
-                      Icons.person,
-                      size: 64,
-                      color: Colors.brown,
-                    ),
-                  ),
-                  roadColor: Colors.yellowAccent,
-                ),
-                markerOption: MarkerOption(
-                    defaultMarker: const MarkerIcon(
-                  icon: Icon(
-                    Icons.person_pin_circle,
-                    color: Colors.blue,
-                    size: 56,
-                  ),
-                )),
+                    directionArrowMarker: const MarkerIcon(
+                      icon: Icon(Icons.person, size: 1),
+                    )),
               ),
             ),
             verticalSpace(),
@@ -123,7 +107,9 @@ class _RealtimeMapPageState extends State<RealtimeMapPage> {
               child: Text(
                 "Tiempo en transcurso:",
                 style: TextStyle(
-                    fontSize: Sizes.font08, color: const Color(0xff175799), fontWeight: FontWeight.bold),
+                    fontSize: Sizes.font08,
+                    color: const Color(0xff175799),
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Container(
@@ -142,7 +128,9 @@ class _RealtimeMapPageState extends State<RealtimeMapPage> {
               child: Text(
                 "Pre-carriage:",
                 style: TextStyle(
-                    fontSize: Sizes.font08, color: const Color(0xff175799), fontWeight: FontWeight.bold),
+                    fontSize: Sizes.font08,
+                    color: const Color(0xff175799),
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Container(
@@ -204,9 +192,22 @@ class _RealtimeMapPageState extends State<RealtimeMapPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 
   Widget positionTile(IconData icon, Color color, String message) {

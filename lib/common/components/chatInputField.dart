@@ -24,6 +24,9 @@ Widget chatInputField(Function(String) update) {
             child: TextField(
               controller: myController,
               onSubmitted: (value) {
+                if (value == "") {
+                  return;
+                }
                 update(value);
                 myController.clear();
               },
@@ -33,6 +36,9 @@ Widget chatInputField(Function(String) update) {
         ),
         GestureDetector(
           onTap: () {
+            if (myController.text == "") {
+              return;
+            }
             update(myController.text);
             myController.clear();
           },

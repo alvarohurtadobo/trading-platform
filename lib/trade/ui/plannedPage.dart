@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/chip.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
@@ -61,7 +62,9 @@ class _PlannedTimeLinePageState extends State<PlannedTimeLinePage> {
                     style: TextStyle(fontSize: Sizes.font12),
                   ),
                   verticalSpace(),
-                  calendar(small: false),
+                  calendar(() {
+                    setState(() {});
+                  }, small: false),
                   verticalSpace(3),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -76,9 +79,11 @@ class _PlannedTimeLinePageState extends State<PlannedTimeLinePage> {
                                 Radius.circular(Sizes.bullet))),
                       ),
                       horizontalSpace(),
-                      const Text(
-                        "Fecha de Salida de Fabrica",
-                        style: TextStyle(color: Color(0xff575454)),
+                      Text(
+                        userType == "planificador"
+                            ? "Fecha de Salida de Fabrica"
+                            : "Salió de fábrica",
+                        style: const TextStyle(color: Color(0xff575454)),
                       )
                     ],
                   ),
@@ -96,9 +101,11 @@ class _PlannedTimeLinePageState extends State<PlannedTimeLinePage> {
                                 Radius.circular(Sizes.bullet))),
                       ),
                       horizontalSpace(),
-                      const Text(
-                        "Fecha estimada de llegada al destino",
-                        style: TextStyle(color: Color(0xff575454)),
+                      Text(
+                        userType == "planificador"
+                            ? "Fecha estimada de llegada al destino"
+                            : "Llegada exitosa",
+                        style: const TextStyle(color: Color(0xff575454)),
                       )
                     ],
                   ),
@@ -151,8 +158,21 @@ class _PlannedTimeLinePageState extends State<PlannedTimeLinePage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

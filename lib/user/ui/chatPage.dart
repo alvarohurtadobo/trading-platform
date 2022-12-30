@@ -26,7 +26,7 @@ class _ChatPageState extends State<ChatPage> {
     double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
     return Scaffold(
-      appBar: chatAppBar(context),
+      appBar: chatAppBar(context,hasCall: true),
       backgroundColor: Colors.white,
       body: SizedBox(
           width: Sizes.width,
@@ -116,8 +116,21 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

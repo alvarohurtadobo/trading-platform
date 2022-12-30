@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
+import 'package:project_trading/user/ui/home/searchWidget.dart';
 import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
+import 'package:project_trading/user/ui/home/profileWidget.dart';
 import 'package:project_trading/user/ui/home/homeExportWidget.dart';
 import 'package:project_trading/user/ui/home/homePlannerWidget.dart';
 import 'package:project_trading/user/ui/home/notificationsWidget.dart';
-import 'package:project_trading/user/ui/home/searchWidget.dart';
 
 class HomePage extends StatefulWidget {
   final int initialIndex;
@@ -33,10 +34,29 @@ class _HomePageState extends State<HomePage> {
   int? currentOrderType = 1;
   int? currentOrder;
 
+  // Profile
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController tokenController = TextEditingController();
+
   @override
   void initState() {
     _selectedIndex = widget.initialIndex;
+    emailController.text = "Alexprin2001@gmail.com";
+    phoneController.text = "+51 009 786 665";
+    countryController.text = "Venezuela";
+    tokenController.text = fcmToken;
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    phoneController.dispose();
+    countryController.dispose();
+    tokenController.dispose();
+    super.dispose();
   }
 
   @override
@@ -84,6 +104,10 @@ class _HomePageState extends State<HomePage> {
             setState(() {});
           },
         );
+        break;
+      case 3:
+        displayBody = profileWidget(context, emailController, phoneController,
+            countryController, tokenController);
         break;
       default:
         displayBody = homePlanner(context);
@@ -138,8 +162,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _onItemTapped(int index) {
-    print("Selected item $index");
+  void _onItemTapped(int index)  {
+    print("Navigate to $index");
     setState(() {
       _selectedIndex = index;
     });

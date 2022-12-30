@@ -94,7 +94,7 @@ class _IncotermsMatrixPageState extends State<IncotermsMatrixPage> {
                           });
                         }),
                   ),
-                  Text("SI"),
+                  const Text("SI"),
                   Checkbox(
                       value: !outOfFabric,
                       shape: const CircleBorder(),
@@ -103,10 +103,16 @@ class _IncotermsMatrixPageState extends State<IncotermsMatrixPage> {
                           outOfFabric = !value!;
                         });
                       }),
-                  Text("NO"),
+                  const Text("NO"),
                 ],
               ),
             ),
+            verticalSpace(),
+            customButton(context, "Seleccionar destino en el mapa", () {
+              Navigator.of(context).pushNamed("/locations");
+            },
+                backgroundColor: const Color(0xff4E8ED0),
+                customWidth: Sizes.width * 0.6),
             verticalSpace(),
             customDropdown(_currentDocument, documents, (value) {
               setState(() {
@@ -126,8 +132,7 @@ class _IncotermsMatrixPageState extends State<IncotermsMatrixPage> {
             verticalSpace(),
             customButton(context, "Riesgos y costos", () {
               Navigator.of(context).pushNamed("/risks");
-            },
-                backgroundColor: const Color(0xff4E8ED0)),
+            }, backgroundColor: const Color(0xff4E8ED0)),
             verticalSpace(3),
           ]))),
       bottomNavigationBar: BottomNavigationBar(
@@ -176,8 +181,21 @@ class _IncotermsMatrixPageState extends State<IncotermsMatrixPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

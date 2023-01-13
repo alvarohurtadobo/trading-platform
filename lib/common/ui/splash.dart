@@ -34,8 +34,7 @@ Future<void> setupFlutterNotifications() async {
 
   /// Update the iOS foreground notification presentation options to allow
   /// heads up notifications.
-  await FirebaseMessaging.instance
-      .setForegroundNotificationPresentationOptions(
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
     sound: true,
@@ -71,23 +70,43 @@ class SplashPage extends StatefulWidget {
   State<StatefulWidget> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+    animationBehavior: AnimationBehavior.preserve,
+    reverseDuration: const Duration(seconds: 0),
+  )..forward();
+
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeIn,
+  );
+
+  late final AnimationController _lineController = AnimationController(
+    duration: const Duration(seconds: 2),
+    animationBehavior: AnimationBehavior.preserve,
+    reverseDuration: const Duration(seconds: 0),
+    vsync: this,
+  )..forward();
+
   @override
   void initState() {
     super.initState();
     setupFlutterNotifications().then((value) {
       FirebaseMessaging.onMessage.listen(showFlutterNotification);
       FirebaseMessaging.onBackgroundMessage((message) async {
-        showToast(message.notification!.body??"");
+        showToast(message.notification!.body ?? "");
       });
     });
-    Timer(const Duration(seconds: 2),() { 
-      Navigator.of(context).pushReplacementNamed("/startAs");
-    });
+    // Timer(const Duration(seconds: 3),() {
+    //   Navigator.of(context).pushReplacementNamed("/startAs");
+    // });
   }
-  
+
   @override
   Widget build(BuildContext context) {
+    Size mySize = Size(Sizes.width, Sizes.height);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     Sizes.initSizes(width, height);
@@ -96,9 +115,55 @@ class _SplashPageState extends State<SplashPage> {
         width: width,
         height: height,
         decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/splash.png"),
-                fit: BoxFit.cover)),
+          color: Color(0xff9ECCF2),
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              top: Sizes.height / 4,
+              left: 0,
+              child: Image.asset(
+                "assets/images/splashSimple.png",
+                width: Sizes.width,
+              ),
+            ),
+            Positioned(
+                top: Sizes.height / 3.5,
+                left: 0,
+                child: FadeTransition(
+                  opacity: _animation,
+                  child: Container(
+                    width: Sizes.width,
+                    height: Sizes.tileBig,
+                    alignment: Alignment.center,
+                    child: Center(
+                      child: Image.asset(
+                        "assets/images/titleAppBar_big.png",
+                        width: Sizes.width * 0.6,
+                      ),
+                    ),
+                  ),
+                )),
+            PositionedTransition(
+              rect: RelativeRectTween(
+                begin: RelativeRect.fromSize(
+                    Rect.fromLTWH(0, Sizes.height / 2, Sizes.width * 0.4,
+                        Sizes.width * 0.4),
+                    mySize),
+                end: RelativeRect.fromSize(
+                    Rect.fromLTWH(0, 0, Sizes.width * 0.4, Sizes.width * 0.4),
+                    mySize),
+              ).animate(CurvedAnimation(
+                parent: _lineController,
+                curve: Curves.linear,
+              )),
+              child: Image.asset(
+                "assets/images/logo.png",
+                width: Sizes.width * 0.8,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

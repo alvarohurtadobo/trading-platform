@@ -101,6 +101,64 @@ class _RealtimeMapPageState extends State<RealtimeMapPage> {
               ),
             ),
             verticalSpace(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      controller.goToLocation(origin);
+                      controller.setZoom(zoomLevel: 12);
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          width: Sizes.tileMini,
+                          height: Sizes.tileMini,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: const Color(0xffB1D4F2),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(Sizes.bullet))),
+                        ),
+                        horizontalSpace(),
+                        const Text(
+                          "Origen",
+                          style: TextStyle(color: Color(0xff575454)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  horizontalSpace(),
+                  GestureDetector(
+                    onTap: () {
+                      controller.goToLocation(destiny);
+                      controller.setZoom(zoomLevel: 12);
+                    },
+                    child: Row(
+                      children: [
+                        Container(
+                          width: Sizes.tileMini,
+                          height: Sizes.tileMini,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: const Color(0xff74CF6F),
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(Sizes.bullet))),
+                        ),
+                        horizontalSpace(),
+                        const Text(
+                          "Destino",
+                          style: TextStyle(color: Color(0xff575454)),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            verticalSpace(),
             Container(
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.symmetric(horizontal: Sizes.padding),

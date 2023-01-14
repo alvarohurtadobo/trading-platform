@@ -1,9 +1,9 @@
-import 'dart:async';
 import 'dart:io';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:project_trading/common/components/toast.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:project_trading/common/components/toast.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 late AndroidNotificationChannel channel;
@@ -74,34 +74,47 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
     vsync: this,
-    animationBehavior: AnimationBehavior.preserve,
-    reverseDuration: const Duration(seconds: 0),
-  )..forward();
+  );
 
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
     curve: Curves.easeIn,
   );
 
-  late final AnimationController _lineController = AnimationController(
-    duration: const Duration(seconds: 2),
-    animationBehavior: AnimationBehavior.preserve,
-    reverseDuration: const Duration(seconds: 0),
+  late final AnimationController _slideController1 = AnimationController(
+    duration: const Duration(milliseconds: 1500),
     vsync: this,
-  )..forward();
+  );
+
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    end: Offset.zero,
+    begin: const Offset(0, 3),
+  ).animate(CurvedAnimation(
+    parent: _slideController1,
+    curve: Curves.decelerate,
+  ));
 
   @override
   void initState() {
     super.initState();
+    _controller.forward();
+    _slideController1.forward();
     setupFlutterNotifications().then((value) {
       FirebaseMessaging.onMessage.listen(showFlutterNotification);
       FirebaseMessaging.onBackgroundMessage((message) async {
         showToast(message.notification!.body ?? "");
       });
     });
-    Timer(const Duration(seconds: 3),() {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacementNamed("/startAs");
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _slideController1.dispose();
+    super.dispose();
   }
 
   @override
@@ -128,7 +141,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               ),
             ),
             Positioned(
-                top: Sizes.height / 3.5,
+                top: Sizes.height *0.28,
                 left: 0,
                 child: FadeTransition(
                   opacity: _animation,
@@ -144,47 +157,37 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                     ),
                   ),
                 )),
-            PositionedTransition(
-              rect: RelativeRectTween(
-                begin: RelativeRect.fromSize(
-                    Rect.fromLTWH(0, Sizes.height * 1.2, 0, 0), mySize),
-                end: RelativeRect.fromSize(
-                    Rect.fromLTWH(0, Sizes.height / 2.6, 0, 0), mySize),
-              ).animate(CurvedAnimation(
-                parent: _lineController,
-                curve: Curves.linear,
-              )),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: Sizes.width * 0.1),
-                width: Sizes.width,
-                alignment: Alignment.topCenter,
-                // color: Colors.green,
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  height: Sizes.height * 0.26,
+            Positioned(
+              top: Sizes.height*0.38,
+              left: 0,
+              child: SlideTransition(
+                position: _offsetAnimation,
+                child: Container(
+                  // color: Colors.green,
+                  padding: EdgeInsets.symmetric(horizontal: Sizes.width * 0.1),
+                  width: Sizes.width,
+                  alignment: Alignment.topCenter,
+                  child: Image.asset(
+                    "assets/images/logo.png",
+                    height: Sizes.height * 0.26,
+                  ),
                 ),
               ),
             ),
-            PositionedTransition(
-              rect: RelativeRectTween(
-                begin: RelativeRect.fromSize(
-                    Rect.fromLTWH(0, Sizes.height * 1.5, 0, 0), mySize),
-                end: RelativeRect.fromSize(
-                    Rect.fromLTWH(
-                        0, Sizes.height / 2.6 + Sizes.height * 0.27, 0, 0),
-                    mySize),
-              ).animate(CurvedAnimation(
-                parent: _lineController,
-                curve: Curves.linear,
-              )),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: Sizes.width * 0.1),
-                width: Sizes.width,
-                alignment: Alignment.topCenter,
-                // color: Colors.green,
-                child: Image.asset(
-                  "assets/images/shadow.png",
-                  width: Sizes.width * 0.8,
+            Positioned(
+              top: Sizes.height*0.54,
+              left: 0,
+              child: SlideTransition(
+                position: _offsetAnimation,
+                child: Container(
+                  // color: Colors.green,
+                  padding: EdgeInsets.symmetric(horizontal: Sizes.width * 0.1),
+                  width: Sizes.width,
+                  alignment: Alignment.topCenter,
+                  child: Image.asset(
+                    "assets/images/shadow.png",
+                    height: Sizes.height * 0.26,
+                  ),
                 ),
               ),
             ),

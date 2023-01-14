@@ -99,9 +99,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         showToast(message.notification!.body ?? "");
       });
     });
-    // Timer(const Duration(seconds: 3),() {
-    //   Navigator.of(context).pushReplacementNamed("/startAs");
-    // });
+    Timer(const Duration(seconds: 3),() {
+      Navigator.of(context).pushReplacementNamed("/startAs");
+    });
   }
 
   @override
@@ -139,7 +139,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                     child: Center(
                       child: Image.asset(
                         "assets/images/titleAppBar_big.png",
-                        width: Sizes.width * 0.6,
+                        height: Sizes.height * 0.07,
                       ),
                     ),
                   ),
@@ -147,19 +147,45 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             PositionedTransition(
               rect: RelativeRectTween(
                 begin: RelativeRect.fromSize(
-                    Rect.fromLTWH(0, Sizes.height / 2, Sizes.width * 0.4,
-                        Sizes.width * 0.4),
-                    mySize),
+                    Rect.fromLTWH(0, Sizes.height * 1.2, 0, 0), mySize),
                 end: RelativeRect.fromSize(
-                    Rect.fromLTWH(0, 0, Sizes.width * 0.4, Sizes.width * 0.4),
+                    Rect.fromLTWH(0, Sizes.height / 2.6, 0, 0), mySize),
+              ).animate(CurvedAnimation(
+                parent: _lineController,
+                curve: Curves.linear,
+              )),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: Sizes.width * 0.1),
+                width: Sizes.width,
+                alignment: Alignment.topCenter,
+                // color: Colors.green,
+                child: Image.asset(
+                  "assets/images/logo.png",
+                  height: Sizes.height * 0.26,
+                ),
+              ),
+            ),
+            PositionedTransition(
+              rect: RelativeRectTween(
+                begin: RelativeRect.fromSize(
+                    Rect.fromLTWH(0, Sizes.height * 1.5, 0, 0), mySize),
+                end: RelativeRect.fromSize(
+                    Rect.fromLTWH(
+                        0, Sizes.height / 2.6 + Sizes.height * 0.27, 0, 0),
                     mySize),
               ).animate(CurvedAnimation(
                 parent: _lineController,
                 curve: Curves.linear,
               )),
-              child: Image.asset(
-                "assets/images/logo.png",
-                width: Sizes.width * 0.8,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: Sizes.width * 0.1),
+                width: Sizes.width,
+                alignment: Alignment.topCenter,
+                // color: Colors.green,
+                child: Image.asset(
+                  "assets/images/shadow.png",
+                  width: Sizes.width * 0.8,
+                ),
               ),
             ),
           ],

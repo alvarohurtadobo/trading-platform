@@ -34,7 +34,7 @@ Future<void> joinDefaultJitsiCall() async {
     ..videoMuted = true
     ..featureFlags.addAll(featureFlags)
     ..webOptions = {
-      "roomName": "projetTradingDeafultRoom",
+      "roomName": "projectTradingDeafultRoom",
       "width": "100%",
       "height": "100%",
       "enableWelcomePage": false,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
-import 'package:project_trading/trade/model/incoterm.dart';
 import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
@@ -27,11 +26,6 @@ class _OrderPageState extends State<OrderPage> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     Sizes.initSizes(width, height);
-
-    List<Incoterm> displayIncoterms = myIncoterms.sublist(0, 3);
-    if (seeAll) {
-      displayIncoterms = myIncoterms;
-    }
 
     return Scaffold(
       appBar: myAppBar(context),
@@ -111,11 +105,15 @@ class _OrderPageState extends State<OrderPage> {
                 style: TextStyle(fontSize: Sizes.font14),
               ),
               verticalSpace(),
-              customProgress(70, customWidth: Sizes.width/2, customHeight: Sizes.tileMini*0.6, activeColor: const Color(0xff4E8ED0)),
+              customProgress(70,
+                  customWidth: Sizes.width / 2,
+                  customHeight: Sizes.tileMini * 0.6,
+                  activeColor: const Color(0xff4E8ED0)),
               verticalSpace(3),
               Center(
-                child: customButton(context, "Enviar mensaje", () {},
-                    backgroundColor: const Color(0xff4E8ED0)),
+                child: customButton(context, "Enviar mensaje", () {
+                  Navigator.of(context).pushNamed("/chats");
+                }, backgroundColor: const Color(0xff4E8ED0)),
               )
             ]),
           ))),
@@ -165,8 +163,21 @@ class _OrderPageState extends State<OrderPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

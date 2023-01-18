@@ -31,11 +31,6 @@ class _OrdersPageState extends State<OrdersPage> {
     double height = MediaQuery.of(context).size.height;
     Sizes.initSizes(width, height);
 
-    List<Incoterm> displayIncoterms = myIncoterms.sublist(0, 3);
-    if (seeAll) {
-      displayIncoterms = myIncoterms;
-    }
-
     return Scaffold(
       appBar: myAppBar(context),
       backgroundColor: Colors.white,
@@ -150,8 +145,21 @@ class _OrdersPageState extends State<OrdersPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

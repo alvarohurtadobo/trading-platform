@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/components/button.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/sizes.dart';
 
 class StartAsPage extends StatefulWidget {
@@ -65,6 +66,7 @@ class _StartAsPageState extends State<StartAsPage> {
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Planificador", () {
+                        userType = 'planificador';
                         Navigator.of(context).pushNamed("/login");
                       },
                           active: true),
@@ -72,12 +74,14 @@ class _StartAsPageState extends State<StartAsPage> {
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Importador", () {
+                        userType = 'importador';
                         Navigator.of(context).pushNamed("/login");
                       }, active: true),
                       SizedBox(
                         height: Sizes.boxSeparation,
                       ),
                       customButton(context, "Exportador", () {
+                        userType = 'exportador';
                         Navigator.of(context).pushNamed("/login");
                       }, active: true),
                       SizedBox(

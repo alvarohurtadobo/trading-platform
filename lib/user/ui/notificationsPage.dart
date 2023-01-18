@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
-import 'package:project_trading/common/model/name.dart';
 import 'package:project_trading/trade/model/notification.dart';
 import 'package:project_trading/common/components/myAppBar.dart';
 import 'package:project_trading/common/components/verticalSpac.dart';
-import 'package:project_trading/common/components/chipDropdown.dart';
-import 'package:project_trading/common/components/horizontalSpace.dart';
 import 'package:project_trading/common/components/expandedNotificationTile.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -31,44 +28,7 @@ class _NotificationPageState extends State<NotificationPage> {
     return Scaffold(
       appBar: myAppBar(context),
       backgroundColor: Colors.white,
-      body: SizedBox(
-          width: Sizes.width,
-          height: Sizes.height,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Center(
-              child: Text(
-                "Notificaciones",
-                style: TextStyle(
-                    color: const Color(0xff4E8ED0),
-                    fontWeight: FontWeight.bold,
-                    fontSize: Sizes.font06),
-              ),
-            ),
-            verticalSpace(2),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                chipDropdown(selectedMonth, months, "MES", (value) {
-                  setState(() {
-                    selectedMonth = value;
-                  });
-                }),
-                horizontalSpace(),
-                chipDropdown(selectedDay, days, "DÍA", (value) {
-                  setState(() {
-                    selectedDay = value;
-                  });
-                }),
-              ],
-            ),
-            verticalSpace(),
-            Expanded(
-                child: ListView(
-              children: notificationWidgets,
-            )),
-            verticalSpace(3),
-          ])),
+      body: Container(),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -115,8 +75,21 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    switch (index) {
+      case 0:
+        Navigator.of(context).pushNamed("/home");
+        break;
+      case 1:
+        Navigator.of(context).pushNamed("/notifications");
+        break;
+      case 2:
+        Navigator.of(context).pushNamed("/orders");
+        break;
+      case 3:
+        Navigator.of(context).pushNamed("/profile");
+        break;
+      default:
+        Navigator.of(context).pushNamed("/home");
+    }
   }
 }

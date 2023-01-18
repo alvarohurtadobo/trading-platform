@@ -43,9 +43,9 @@ class Sizes {
     tileMini = width / 14;
     tileSmall = width / 12;
     tileNormal = width / 10;
-    tileMedium = width / 6;
+    tileMedium = width / 5.5;
     tileBig = width / 4.8;
-    tileHuge = width / 3.8;
+    tileHuge = width / 3.6;
     avatarSide = width / 5.8;
     iconSide = width / 16;
     radius = boxSeparation / 2;

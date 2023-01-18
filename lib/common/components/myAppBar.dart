@@ -3,7 +3,7 @@ import 'package:project_trading/common/sizes.dart';
 
 AppBar myAppBar(BuildContext context) {
   return AppBar(
-    leading: GestureDetector(child: Image.asset("assets/icons/back.png"), onTap: (){
+    leading: GestureDetector(child: Image.asset("assets/icons/back.png", height: Sizes.tileNormal,), onTap: (){
       Navigator.of(context).pop();
     },),
     leadingWidth: 30 + 30,

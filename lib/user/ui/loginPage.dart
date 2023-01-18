@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/button.dart';
+import 'package:project_trading/common/components/verticalSpac.dart';
 import 'package:project_trading/common/components/customTextInput.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,13 +25,22 @@ class _LoginPageState extends State<LoginPage> {
         child: Stack(
           children: [
             Positioned(
-                top: Sizes.height * 0.32,
+                top: 0,
                 left: 0,
                 child: Container(
-                  width: Sizes.width,
-                  height: Sizes.height * 0.68,
-                  color: const Color(0xff2F70AF),
-                )),
+                    width: Sizes.width,
+                    height: Sizes.height,
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent,
+                        Color(0xff2F70AF),
+                        Color(0xff2F70AF),
+                        Color(0xff2F70AF),
+                      ],
+                    )))),
             Positioned(
               left: 0,
               top: 0,
@@ -53,29 +63,25 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         "INICIAR SESIÓN",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: Sizes.font04,
+                            fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        height: Sizes.boxSeparation,
-                      ),
+                      verticalSpace(2),
                       customTextInput(context, "Correo Electrónico", (value) {
                         email = value;
-                      }),
-                      SizedBox(
-                        height: Sizes.boxSeparation,
-                      ),
+                      }, hint: "MartaTorres14@gmail.com"),
+                      verticalSpace(),
                       customTextInput(context, "Contraseña", (value) {
                         password = value;
-                      }),
-                      SizedBox(
-                        height: Sizes.boxSeparation,
-                      ),
+                      }, hint: "********"),
+                      verticalSpace(2),
                       customButton(context, "Entrar", () {
                         Navigator.of(context).pushReplacementNamed("/home");
-                      },
-                          active: true),
+                      }, active: true),
                     ],
                   ),
                 ))

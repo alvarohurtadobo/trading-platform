@@ -4,7 +4,7 @@ import 'package:project_trading/common/sizes.dart';
 Widget avatarTile() {
   return Container(
     width: Sizes.width - 2 * Sizes.padding,
-    height: Sizes.tileBig,
+    height: Sizes.tileBig*1.2,
     padding: EdgeInsets.all(Sizes.padding / 4),
     decoration: BoxDecoration(
         color: Colors.white,
@@ -33,12 +33,17 @@ Widget avatarTile() {
                     fontWeight: FontWeight.bold,
                     fontSize: Sizes.font08),
               ),
-              Text(
-                "Disfruta tu experiencia con nosotros",
-                style: TextStyle(
-                    color: const Color(0xff7C7C7C),
-                    fontWeight: FontWeight.normal,
-                    fontSize: Sizes.font10),
+              SizedBox(
+                width: Sizes.width - 3 * Sizes.padding - Sizes.avatarSide,
+                child: Text(
+                  "Disfruta tu experiencia con nosotros",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                      color: const Color(0xff7C7C7C),
+                      fontWeight: FontWeight.normal,
+                      fontSize: Sizes.font10),
+                ),
               ),
               Text(
                 "PLANIFICADOR",

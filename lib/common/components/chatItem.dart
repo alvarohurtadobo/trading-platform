@@ -4,7 +4,9 @@ import 'package:project_trading/common/sizes.dart';
 Widget chatItem(String message, DateTime datetime,
     {bool sent = false, bool placeholder = false}) {
   if (placeholder) {
-    return Expanded(
+    return SizedBox(
+      width: Sizes.width,
+      height: Sizes.tileNormal,
         child: Center(
       child: Text(datetime.toIso8601String().substring(0, 10)),
     ));

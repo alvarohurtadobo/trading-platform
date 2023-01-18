@@ -6,6 +6,7 @@ Widget chatInputField(Function(String) update) {
   return Container(
     width: Sizes.width,
     height: Sizes.tileNormal,
+    alignment: Alignment.bottomCenter,
     padding: EdgeInsets.symmetric(horizontal: Sizes.boxSeparation),
     margin: EdgeInsets.symmetric(
         vertical: Sizes.padding / 2, horizontal: Sizes.padding / 4),
@@ -23,6 +24,9 @@ Widget chatInputField(Function(String) update) {
             child: TextField(
               controller: myController,
               onSubmitted: (value) {
+                if (value == "") {
+                  return;
+                }
                 update(value);
                 myController.clear();
               },
@@ -32,6 +36,9 @@ Widget chatInputField(Function(String) update) {
         ),
         GestureDetector(
           onTap: () {
+            if (myController.text == "") {
+              return;
+            }
             update(myController.text);
             myController.clear();
           },

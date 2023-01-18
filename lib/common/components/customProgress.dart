@@ -32,14 +32,11 @@ Widget customProgress(int progress,
                     BorderRadius.all(Radius.circular(customHeight / 2))),
           )),
       Center(
-          child: Expanded(
-        child: Center(
-          child: Text(
-            "$progress \%",
-            style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-          ),
+        child: Text(
+          "$progress \%",
+          style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
         ),
-      ))
+      )
     ]),
   );
 }

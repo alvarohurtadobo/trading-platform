@@ -1,5 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:project_trading/common/components/verticalSpac.dart';
+import 'package:project_trading/common/model/currentState.dart';
 import 'package:project_trading/common/sizes.dart';
 import 'package:project_trading/common/components/button.dart';
 import 'package:project_trading/common/components/customTextInput.dart';
@@ -22,10 +23,7 @@ List<String> countries = [
 class _SimpleSignupPageState extends State<SimpleSignupPage> {
   String name = "";
   String email = "";
-  int? countryId;
-
-  @override
-  void initState() {}
+  int? countryId = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ class _SimpleSignupPageState extends State<SimpleSignupPage> {
         width: width,
         height: height,
         padding: EdgeInsets.symmetric(
-            horizontal: Sizes.padding, vertical: Sizes.padding * 2),
+            horizontal: Sizes.padding/2, vertical: Sizes.padding * 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -50,17 +48,15 @@ class _SimpleSignupPageState extends State<SimpleSignupPage> {
                   fontSize: Sizes.font04,
                   fontWeight: FontWeight.bold),
             ),
-            const Text("planificador",
-                style: TextStyle(
+            Text(userType,
+                style: const TextStyle(
                     color: Colors.white, fontWeight: FontWeight.normal)),
-            SizedBox(
-              height: 4 * Sizes.boxSeparation,
-            ),
+            verticalSpace(3),
             customTextInput(context, "Nombres y Apellidos", (value) {
               setState(() {
                 name = value;
               });
-            }),
+            }, hint: "Marta Torres"),
             SizedBox(
               height: Sizes.boxSeparation,
             ),
@@ -68,7 +64,7 @@ class _SimpleSignupPageState extends State<SimpleSignupPage> {
               setState(() {
                 email = value;
               });
-            }),
+            }, hint: "MartaTorres14@gmail.com"),
             SizedBox(
               height: Sizes.boxSeparation,
             ),
@@ -78,23 +74,27 @@ class _SimpleSignupPageState extends State<SimpleSignupPage> {
               padding: EdgeInsets.symmetric(horizontal: Sizes.padding),
               child: const Text(
                 "País",
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(Sizes.padding),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: Sizes.padding),
+              decoration: const BoxDecoration(
+                      border:
+                          Border(bottom: BorderSide(color: Colors.white))),
               child: DropdownButton<int>(
                   value: countryId,
                   isExpanded: true,
                   // dropdownColor: const Color(0xff2F70AF),
-                  icon: Icon(Icons.keyboard_arrow_down_sharp),
+                  icon: const Icon(Icons.keyboard_arrow_down_sharp),
                   iconEnabledColor: Colors.white,
+                  underline: Container(),
                   selectedItemBuilder: (context) {
                     return countries
                         .map((e) => DropdownMenuItem(
                               child: Text(
                                 e,
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.white60),
                               ),
                               value: countries.indexOf(e),
                             ))
@@ -115,11 +115,9 @@ class _SimpleSignupPageState extends State<SimpleSignupPage> {
                     });
                   }),
             ),
-            SizedBox(
-              height: Sizes.boxSeparation,
-            ),
+            verticalSpace(3),
             customButton(context, "Continuar", () {
-              Navigator.of(context).pushReplacementNamed("/signin");
+              Navigator.of(context).pushReplacementNamed("/login");
             })
           ],
         ),

@@ -69,7 +69,6 @@ class SplashPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _SplashPageState();
 }
-
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
@@ -141,7 +140,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               ),
             ),
             Positioned(
-                top: Sizes.height *0.28,
+                top: Sizes.height * 0.28,
                 left: 0,
                 child: FadeTransition(
                   opacity: _animation,
@@ -158,7 +157,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   ),
                 )),
             Positioned(
-              top: Sizes.height*0.38,
+              top: Sizes.height * 0.38,
               left: 0,
               child: SlideTransition(
                 position: _offsetAnimation,
@@ -175,7 +174,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               ),
             ),
             Positioned(
-              top: Sizes.height*0.54,
+              top: Sizes.height * 0.54,
               left: 0,
               child: SlideTransition(
                 position: _offsetAnimation,
